@@ -1,0 +1,24 @@
+{
+  "name": "@wix/chat-viewer",
+  "version": "0.1.0",
+  "description": "An AI-ready chat view library by Wix AI Site-Chat",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wix-incubator/chat-viewer.git"
+  },
+  "keywords": [
+    "chat",
+    "ui",
+    "react"
+  ],
+  "author": "Denys Dovhan",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/wix-incubator/chat-viewer/issues"
+  },
+  "homepage": "https://github.com/wix-incubator/chat-viewer#readme"
+}
