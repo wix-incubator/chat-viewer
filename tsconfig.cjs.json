@@ -1,0 +1,9 @@
+{
+    "extends": "./tsconfig.json",
+    "compilerOptions": {
+      "module": "CommonJS",
+      "moduleResolution": null,
+      "esModuleInterop": true,
+    },
+    "include": ["lib"]
+  }

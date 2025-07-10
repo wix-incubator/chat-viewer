@@ -1,24 +1,35 @@
 {
   "name": "@wix/chat-viewer",
+  "private": true,
   "version": "0.1.0",
-  "description": "An AI-ready chat view library by Wix AI Site-Chat",
-  "main": "index.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "vite",
+    "build": "npm run build:esm && npm run build:cjs",
+    "build:esm": "tsc --p ./tsconfig.esm.json && vite build -c vite.config.esm.ts",
+    "build:cjs": "tsc --p ./tsconfig.cjs.json && vite build -c vite.config.cjs.ts",
+    "lint": "eslint .",
+    "preview": "vite preview"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/wix-incubator/chat-viewer.git"
+  "dependencies": {
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "virtua": "^0.41.5"
   },
-  "keywords": [
-    "chat",
-    "ui",
-    "react"
-  ],
-  "author": "Denys Dovhan",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/wix-incubator/chat-viewer/issues"
-  },
-  "homepage": "https://github.com/wix-incubator/chat-viewer#readme"
+  "devDependencies": {
+    "@eslint/js": "^9.30.1",
+    "@types/node": "^24.0.12",
+    "@types/react": "^19.1.8",
+    "@types/react-dom": "^19.1.6",
+    "@vitejs/plugin-react": "^4.6.0",
+    "eslint": "^9.30.1",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "eslint-plugin-react-refresh": "^0.4.20",
+    "glob": "^11.0.3",
+    "globals": "^16.3.0",
+    "typescript": "~5.8.3",
+    "typescript-eslint": "^8.35.1",
+    "vite": "^7.0.3",
+    "vite-plugin-dts": "^4.5.4"
+  }
 }
