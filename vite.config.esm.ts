@@ -9,8 +9,11 @@ import { glob } from 'glob'
 export default defineConfig({
   plugins: [
     react(), 
-    dts({ include: ['lib'] }),
-  ],  
+    dts({
+      include: ['lib'],
+      outDir: 'dist/types',
+    }),
+  ],
   build: {
     copyPublicDir: false,
     lib: {
@@ -18,7 +21,10 @@ export default defineConfig({
       formats: ['es']
     },
     rollupOptions: {
-      external: ['react', 'react/jsx-runtime'],
+      external: [
+        'react',
+        'react/jsx-runtime'
+      ],
       input: Object.fromEntries(
         glob.sync('lib/**/*.{ts,tsx}').map(file => [
           // The name of the entry point
