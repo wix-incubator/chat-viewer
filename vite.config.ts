@@ -35,9 +35,11 @@ const lib: UserConfig = {
 
 const demo: UserConfig = {
   base: './',
-  plugins: [react()],
+  plugins: [
+    react(),
+  ],
   build: {
-    outDir: 'demo',
+    outDir: 'website',
   },
 };
 

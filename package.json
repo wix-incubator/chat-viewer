@@ -22,7 +22,8 @@
     "build:lib": "tsc --p ./tsconfig.esm.json && vite build",
     "build:demo": "vite build --mode demo",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "typedoc": "typedoc"
   },
   "peerDependencies": {
     "react": "^19.1.0",
@@ -41,9 +42,11 @@
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.20",
     "glob": "^11.0.3",
+    "globals": "^16.3.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
-    "globals": "^16.3.0",
+    "typedoc": "^0.28.7",
+    "typedoc-plugin-markdown": "^4.7.0",
     "typescript": "~5.8.3",
     "typescript-eslint": "^8.35.1",
     "vite": "^7.0.3",

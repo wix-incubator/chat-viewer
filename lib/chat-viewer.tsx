@@ -29,6 +29,10 @@ import type {
 } from './types';
 import { isAtBottom, isAtTop, normalizeNegativeIndex, toItem } from './utils';
 
+/**
+ * ChatViewer component with forwarded ref.
+ * @internal
+ */
 function ChatViewerWithRef<M extends IdentifiableMessage>(
   props: ChatViewerProps<M>,
   ref: Ref<ChatViewerHandle<M>>,
@@ -360,6 +364,9 @@ function ChatViewerWithRef<M extends IdentifiableMessage>(
   );
 }
 
+/**
+ * 
+ */
 export const ChatViewer = memo(forwardRef(ChatViewerWithRef)) as <
   M extends IdentifiableMessage,
 >(

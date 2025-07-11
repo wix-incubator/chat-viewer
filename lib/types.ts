@@ -74,6 +74,10 @@ export interface ChatViewerProps<
   onSuffixDisplay?: OnAffixCallback<M>;
 }
 
+/**
+ * Props for the ChatViewer component with a forwarded ref.
+ * @internal
+ */
 export interface ChatViewerPropsWithRef<
   M extends IdentifiableMessage = IdentifiableMessage,
 > extends ChatViewerProps<M> {

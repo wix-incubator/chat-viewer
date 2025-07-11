@@ -1,0 +1,11 @@
+{
+  "$schema": "https://typedoc.org/schema.json",
+  "entryPoints": [
+    "./lib/index.ts"
+  ],
+  "name": "API Reference",
+  "plugin": ["typedoc-plugin-markdown"],
+  "groupOrder": ["Variables", "Interfaces", "Type Aliases", "*"],
+  "excludeInternal": true,
+  "readme": "none",
+}
