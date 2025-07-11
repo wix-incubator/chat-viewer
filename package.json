@@ -18,7 +18,9 @@
   ],
   "scripts": {
     "dev": "vite",
-    "build": "tsc --p ./tsconfig.esm.json && vite build",
+    "build": "npm run build:lib && npm run build:demo",
+    "build:lib": "tsc --p ./tsconfig.esm.json && vite build",
+    "build:demo": "vite build --mode demo",
     "lint": "eslint .",
     "preview": "vite preview"
   },
