@@ -23,7 +23,8 @@
     "build:demo": "vite build --mode demo",
     "lint": "eslint .",
     "preview": "vite preview",
-    "typedoc": "typedoc"
+    "typedoc": "typedoc",
+    "prepublish": "npm run build:lib"
   },
   "peerDependencies": {
     "react": "^19.1.0",
