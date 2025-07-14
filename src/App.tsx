@@ -1,6 +1,6 @@
-import { useMemo, useRef, useState } from 'react';
+import { useCallback, useMemo, useRef, useState } from 'react';
 import { faker } from '@faker-js/faker';
-import { ChatViewer, ChatViewerHandle } from '../lib'
+import { ChatViewer, ChatViewerHandle, followEveryMessage, followMessagesAtBottom, followMessagesBy, OnMessagesCallback } from '../lib'
 import classes from './App.module.css'
 
 const WIX_ICON = 'https://simpleicons.org/icons/wix.svg';
@@ -12,6 +12,8 @@ interface Message {
   name?: string;
   userpic: string;
 }
+
+type FollowStrategy = 'always' | 'never' | 'at-bottom' | 'only-received';
 
 function userMessage(): Message {
   const sex = faker.person.sexType();
@@ -60,21 +62,53 @@ function Message(props: Message) {
   );
 }
 
+function Loader() {
+  return <div className={classes.loader}>Loading...</div>;
+}
+
 function App() {
   const chatRef = useRef<ChatViewerHandle<Message>>(null);
   const [messages, setMessages] = useState<Message[]>(generateMessages(10));
+  const [isLoadingHistory, setIsLoadingHistory] = useState(false);
 
   const [wide, setWide] = useState(true);
   const [tall, setTall] = useState(true);
+  const [followStrategy, setFollowStrategy] = useState<FollowStrategy>('always');
 
   const styles = useMemo(() => ({
     width: wide ? '100%' : '60%',
     height: tall ? '100%' : '60%',
     backgroundColor: '#fefefe',
+    border: '1px solid #ddd',
   }), [wide, tall]);
+
+  const onNewMessages = useMemo<OnMessagesCallback<Message>>(() => {
+    switch (followStrategy) {
+      case 'always':
+        return followEveryMessage();
+      case 'never':
+        return () => {};
+      case 'at-bottom':
+        return followMessagesAtBottom();
+      case 'only-received':
+        return followMessagesBy((message) => message.role === 'assistant');
+      default:
+        return () => {};
+    }
+  }, [followStrategy])
 
   const prependMessages = (n: number) => setMessages((prev) => [...generateMessages(n), ...prev]);
   const appendMessages = (n: number) => setMessages((prev) => [...prev, ...generateMessages(n)]);
+
+  const loadHistory = useCallback(() => {
+    if (isLoadingHistory) return;
+    setIsLoadingHistory(true);
+
+    setTimeout(() => {
+      prependMessages(10);
+      setIsLoadingHistory(false);
+    }, 1000); // Simulate network delay
+  }, [isLoadingHistory]);
 
   return (
     <div className={classes.body}>
@@ -94,6 +128,7 @@ function App() {
             </button>
           </div>
         </div>
+        
 
         <div className={classes.group}>
           <strong>Messages</strong>
@@ -130,6 +165,22 @@ function App() {
         </div>
         
         <div className={classes.group}>
+          <strong>Logic</strong>
+          <div className={classes.field}>
+            <p>follow new messages</p>
+            <select
+              value={followStrategy}
+              onChange={(e) => setFollowStrategy(e.target.value as FollowStrategy)}
+            >
+              <option value="always">Always</option>
+              <option value="never">Never</option>
+              <option value="at-bottom">At bottom</option>
+              <option value="only-received">Only received</option>
+            </select>
+          </div>
+        </div>
+
+        <div className={classes.group}>
           <strong>Actions</strong>
           <div className={classes.field}>
             <p>jump to</p>
@@ -146,8 +197,13 @@ function App() {
         <ChatViewer<Message>
           ref={chatRef}
           style={styles}
+          overscan={10}
           messages={messages}
           renderMessage={(message) => <Message {...message} />}
+          onNewerMessages={onNewMessages}
+          prefix={isLoadingHistory ? <Loader /> : null}
+          historyEndOffset={100}
+          onHistoryEndReached={loadHistory}
         />
       </div>
       <div className={classes.debug}>
