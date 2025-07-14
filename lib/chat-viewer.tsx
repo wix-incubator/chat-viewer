@@ -78,7 +78,7 @@ function ChatViewerWithRef<M extends IdentifiableMessage>(
     For chat viewer it happens only when older messages are prepended.
     Issue: https://github.com/inokawa/virtua/issues/284#issuecomment-2269920855
   */
-  const shift = Boolean(older.length);
+  const shift = Boolean(older.length) && !reverse;
 
   const prefixItem = useMemo(
     () => (prefix ? toItem(PREFIX_ID, prefix) : null),
