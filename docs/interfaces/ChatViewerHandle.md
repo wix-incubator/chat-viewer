@@ -2,11 +2,9 @@
 
 ***
 
-[API Reference](../README.md) / ChatViewerHandle
-
 # Interface: ChatViewerHandle\<M\>
 
-Defined in: [types.ts:90](https://github.com/wix-incubator/chat-viewer/blob/15bf3285badb80da9e01685e151f498ed816c224/lib/types.ts#L90)
+Defined in: [types.ts:87](https://github.com/wix-incubator/chat-viewer/blob/e96df3d365886b675050c785cc1263aee40928fe/lib/types.ts#L87)
 
 ## Type Parameters
 
@@ -20,7 +18,7 @@ Defined in: [types.ts:90](https://github.com/wix-incubator/chat-viewer/blob/15bf
 
 > **getIdOffset**(`id`): `undefined` \| `number`
 
-Defined in: [types.ts:114](https://github.com/wix-incubator/chat-viewer/blob/15bf3285badb80da9e01685e151f498ed816c224/lib/types.ts#L114)
+Defined in: [types.ts:111](https://github.com/wix-incubator/chat-viewer/blob/e96df3d365886b675050c785cc1263aee40928fe/lib/types.ts#L111)
 
 #### Parameters
 
@@ -38,7 +36,7 @@ Defined in: [types.ts:114](https://github.com/wix-incubator/chat-viewer/blob/15b
 
 > **getIdSize**(`id`): `undefined` \| `number`
 
-Defined in: [types.ts:116](https://github.com/wix-incubator/chat-viewer/blob/15bf3285badb80da9e01685e151f498ed816c224/lib/types.ts#L116)
+Defined in: [types.ts:113](https://github.com/wix-incubator/chat-viewer/blob/e96df3d365886b675050c785cc1263aee40928fe/lib/types.ts#L113)
 
 #### Parameters
 
@@ -56,7 +54,7 @@ Defined in: [types.ts:116](https://github.com/wix-incubator/chat-viewer/blob/15b
 
 > **getIndexOffset**(`index`): `undefined` \| `number`
 
-Defined in: [types.ts:113](https://github.com/wix-incubator/chat-viewer/blob/15bf3285badb80da9e01685e151f498ed816c224/lib/types.ts#L113)
+Defined in: [types.ts:110](https://github.com/wix-incubator/chat-viewer/blob/e96df3d365886b675050c785cc1263aee40928fe/lib/types.ts#L110)
 
 #### Parameters
 
@@ -74,7 +72,7 @@ Defined in: [types.ts:113](https://github.com/wix-incubator/chat-viewer/blob/15b
 
 > **getIndexSize**(`index`): `undefined` \| `number`
 
-Defined in: [types.ts:115](https://github.com/wix-incubator/chat-viewer/blob/15bf3285badb80da9e01685e151f498ed816c224/lib/types.ts#L115)
+Defined in: [types.ts:112](https://github.com/wix-incubator/chat-viewer/blob/e96df3d365886b675050c785cc1263aee40928fe/lib/types.ts#L112)
 
 #### Parameters
 
@@ -92,7 +90,7 @@ Defined in: [types.ts:115](https://github.com/wix-incubator/chat-viewer/blob/15b
 
 > **isIdInViewport**(`id`): `boolean`
 
-Defined in: [types.ts:110](https://github.com/wix-incubator/chat-viewer/blob/15bf3285badb80da9e01685e151f498ed816c224/lib/types.ts#L110)
+Defined in: [types.ts:107](https://github.com/wix-incubator/chat-viewer/blob/e96df3d365886b675050c785cc1263aee40928fe/lib/types.ts#L107)
 
 #### Parameters
 
@@ -110,7 +108,7 @@ Defined in: [types.ts:110](https://github.com/wix-incubator/chat-viewer/blob/15b
 
 > **isIndexInViewport**(`index`): `boolean`
 
-Defined in: [types.ts:109](https://github.com/wix-incubator/chat-viewer/blob/15bf3285badb80da9e01685e151f498ed816c224/lib/types.ts#L109)
+Defined in: [types.ts:106](https://github.com/wix-incubator/chat-viewer/blob/e96df3d365886b675050c785cc1263aee40928fe/lib/types.ts#L106)
 
 #### Parameters
 
@@ -128,7 +126,7 @@ Defined in: [types.ts:109](https://github.com/wix-incubator/chat-viewer/blob/15b
 
 > **scrollBy**(`offset`): `void`
 
-Defined in: [types.ts:120](https://github.com/wix-incubator/chat-viewer/blob/15bf3285badb80da9e01685e151f498ed816c224/lib/types.ts#L120)
+Defined in: [types.ts:117](https://github.com/wix-incubator/chat-viewer/blob/e96df3d365886b675050c785cc1263aee40928fe/lib/types.ts#L117)
 
 #### Parameters
 
@@ -146,7 +144,7 @@ Defined in: [types.ts:120](https://github.com/wix-incubator/chat-viewer/blob/15b
 
 > **scrollToBottom**(`opts?`): `void`
 
-Defined in: [types.ts:122](https://github.com/wix-incubator/chat-viewer/blob/15bf3285badb80da9e01685e151f498ed816c224/lib/types.ts#L122)
+Defined in: [types.ts:119](https://github.com/wix-incubator/chat-viewer/blob/e96df3d365886b675050c785cc1263aee40928fe/lib/types.ts#L119)
 
 #### Parameters
 
@@ -164,7 +162,7 @@ Defined in: [types.ts:122](https://github.com/wix-incubator/chat-viewer/blob/15b
 
 > **scrollToId**(`id`, `opts?`): `void`
 
-Defined in: [types.ts:119](https://github.com/wix-incubator/chat-viewer/blob/15bf3285badb80da9e01685e151f498ed816c224/lib/types.ts#L119)
+Defined in: [types.ts:116](https://github.com/wix-incubator/chat-viewer/blob/e96df3d365886b675050c785cc1263aee40928fe/lib/types.ts#L116)
 
 #### Parameters
 
@@ -186,7 +184,7 @@ Defined in: [types.ts:119](https://github.com/wix-incubator/chat-viewer/blob/15b
 
 > **scrollToIndex**(`index`, `opts?`): `void`
 
-Defined in: [types.ts:118](https://github.com/wix-incubator/chat-viewer/blob/15bf3285badb80da9e01685e151f498ed816c224/lib/types.ts#L118)
+Defined in: [types.ts:115](https://github.com/wix-incubator/chat-viewer/blob/e96df3d365886b675050c785cc1263aee40928fe/lib/types.ts#L115)
 
 #### Parameters
 
@@ -208,7 +206,7 @@ Defined in: [types.ts:118](https://github.com/wix-incubator/chat-viewer/blob/15b
 
 > **scrollToOffset**(`offset`): `void`
 
-Defined in: [types.ts:117](https://github.com/wix-incubator/chat-viewer/blob/15bf3285badb80da9e01685e151f498ed816c224/lib/types.ts#L117)
+Defined in: [types.ts:114](https://github.com/wix-incubator/chat-viewer/blob/e96df3d365886b675050c785cc1263aee40928fe/lib/types.ts#L114)
 
 #### Parameters
 
@@ -226,7 +224,7 @@ Defined in: [types.ts:117](https://github.com/wix-incubator/chat-viewer/blob/15b
 
 > **scrollToTop**(`opts?`): `void`
 
-Defined in: [types.ts:121](https://github.com/wix-incubator/chat-viewer/blob/15bf3285badb80da9e01685e151f498ed816c224/lib/types.ts#L121)
+Defined in: [types.ts:118](https://github.com/wix-incubator/chat-viewer/blob/e96df3d365886b675050c785cc1263aee40928fe/lib/types.ts#L118)
 
 #### Parameters
 
@@ -244,7 +242,7 @@ Defined in: [types.ts:121](https://github.com/wix-incubator/chat-viewer/blob/15b
 
 > **atBottom**: `boolean`
 
-Defined in: [types.ts:95](https://github.com/wix-incubator/chat-viewer/blob/15bf3285badb80da9e01685e151f498ed816c224/lib/types.ts#L95)
+Defined in: [types.ts:92](https://github.com/wix-incubator/chat-viewer/blob/e96df3d365886b675050c785cc1263aee40928fe/lib/types.ts#L92)
 
 ***
 
@@ -252,7 +250,7 @@ Defined in: [types.ts:95](https://github.com/wix-incubator/chat-viewer/blob/15bf
 
 > **atTop**: `boolean`
 
-Defined in: [types.ts:94](https://github.com/wix-incubator/chat-viewer/blob/15bf3285badb80da9e01685e151f498ed816c224/lib/types.ts#L94)
+Defined in: [types.ts:91](https://github.com/wix-incubator/chat-viewer/blob/e96df3d365886b675050c785cc1263aee40928fe/lib/types.ts#L91)
 
 ***
 
@@ -260,7 +258,7 @@ Defined in: [types.ts:94](https://github.com/wix-incubator/chat-viewer/blob/15bf
 
 > **idsToIndexes**: `Map`\<[`MessageId`](../type-aliases/MessageId.md)\<`M`\>, `number`\>
 
-Defined in: [types.ts:96](https://github.com/wix-incubator/chat-viewer/blob/15bf3285badb80da9e01685e151f498ed816c224/lib/types.ts#L96)
+Defined in: [types.ts:93](https://github.com/wix-incubator/chat-viewer/blob/e96df3d365886b675050c785cc1263aee40928fe/lib/types.ts#L93)
 
 ***
 
@@ -268,7 +266,7 @@ Defined in: [types.ts:96](https://github.com/wix-incubator/chat-viewer/blob/15bf
 
 > **indexesToIds**: `Map`\<`number`, [`MessageId`](../type-aliases/MessageId.md)\<`M`\>\>
 
-Defined in: [types.ts:97](https://github.com/wix-incubator/chat-viewer/blob/15bf3285badb80da9e01685e151f498ed816c224/lib/types.ts#L97)
+Defined in: [types.ts:94](https://github.com/wix-incubator/chat-viewer/blob/e96df3d365886b675050c785cc1263aee40928fe/lib/types.ts#L94)
 
 ***
 
@@ -276,7 +274,7 @@ Defined in: [types.ts:97](https://github.com/wix-incubator/chat-viewer/blob/15bf
 
 > **newestIdInViewport**: `undefined` \| [`MessageId`](../type-aliases/MessageId.md)\<`M`\>
 
-Defined in: [types.ts:108](https://github.com/wix-incubator/chat-viewer/blob/15bf3285badb80da9e01685e151f498ed816c224/lib/types.ts#L108)
+Defined in: [types.ts:105](https://github.com/wix-incubator/chat-viewer/blob/e96df3d365886b675050c785cc1263aee40928fe/lib/types.ts#L105)
 
 ***
 
@@ -284,7 +282,7 @@ Defined in: [types.ts:108](https://github.com/wix-incubator/chat-viewer/blob/15b
 
 > **newestIndexInViewport**: `number`
 
-Defined in: [types.ts:107](https://github.com/wix-incubator/chat-viewer/blob/15bf3285badb80da9e01685e151f498ed816c224/lib/types.ts#L107)
+Defined in: [types.ts:104](https://github.com/wix-incubator/chat-viewer/blob/e96df3d365886b675050c785cc1263aee40928fe/lib/types.ts#L104)
 
 ***
 
@@ -292,7 +290,7 @@ Defined in: [types.ts:107](https://github.com/wix-incubator/chat-viewer/blob/15b
 
 > **newestSeenId**: `undefined` \| [`MessageId`](../type-aliases/MessageId.md)\<`M`\>
 
-Defined in: [types.ts:101](https://github.com/wix-incubator/chat-viewer/blob/15bf3285badb80da9e01685e151f498ed816c224/lib/types.ts#L101)
+Defined in: [types.ts:98](https://github.com/wix-incubator/chat-viewer/blob/e96df3d365886b675050c785cc1263aee40928fe/lib/types.ts#L98)
 
 ***
 
@@ -300,7 +298,7 @@ Defined in: [types.ts:101](https://github.com/wix-incubator/chat-viewer/blob/15b
 
 > **newestSeenIndex**: `undefined` \| `number`
 
-Defined in: [types.ts:102](https://github.com/wix-incubator/chat-viewer/blob/15bf3285badb80da9e01685e151f498ed816c224/lib/types.ts#L102)
+Defined in: [types.ts:99](https://github.com/wix-incubator/chat-viewer/blob/e96df3d365886b675050c785cc1263aee40928fe/lib/types.ts#L99)
 
 ***
 
@@ -308,7 +306,7 @@ Defined in: [types.ts:102](https://github.com/wix-incubator/chat-viewer/blob/15b
 
 > **oldestIdInViewport**: `undefined` \| [`MessageId`](../type-aliases/MessageId.md)\<`M`\>
 
-Defined in: [types.ts:106](https://github.com/wix-incubator/chat-viewer/blob/15bf3285badb80da9e01685e151f498ed816c224/lib/types.ts#L106)
+Defined in: [types.ts:103](https://github.com/wix-incubator/chat-viewer/blob/e96df3d365886b675050c785cc1263aee40928fe/lib/types.ts#L103)
 
 ***
 
@@ -316,7 +314,7 @@ Defined in: [types.ts:106](https://github.com/wix-incubator/chat-viewer/blob/15b
 
 > **oldestIndexInViewport**: `number`
 
-Defined in: [types.ts:105](https://github.com/wix-incubator/chat-viewer/blob/15bf3285badb80da9e01685e151f498ed816c224/lib/types.ts#L105)
+Defined in: [types.ts:102](https://github.com/wix-incubator/chat-viewer/blob/e96df3d365886b675050c785cc1263aee40928fe/lib/types.ts#L102)
 
 ***
 
@@ -324,7 +322,7 @@ Defined in: [types.ts:105](https://github.com/wix-incubator/chat-viewer/blob/15b
 
 > **oldestSeenId**: `undefined` \| [`MessageId`](../type-aliases/MessageId.md)\<`M`\>
 
-Defined in: [types.ts:103](https://github.com/wix-incubator/chat-viewer/blob/15bf3285badb80da9e01685e151f498ed816c224/lib/types.ts#L103)
+Defined in: [types.ts:100](https://github.com/wix-incubator/chat-viewer/blob/e96df3d365886b675050c785cc1263aee40928fe/lib/types.ts#L100)
 
 ***
 
@@ -332,7 +330,7 @@ Defined in: [types.ts:103](https://github.com/wix-incubator/chat-viewer/blob/15b
 
 > **oldestSeenIndex**: `undefined` \| `number`
 
-Defined in: [types.ts:104](https://github.com/wix-incubator/chat-viewer/blob/15bf3285badb80da9e01685e151f498ed816c224/lib/types.ts#L104)
+Defined in: [types.ts:101](https://github.com/wix-incubator/chat-viewer/blob/e96df3d365886b675050c785cc1263aee40928fe/lib/types.ts#L101)
 
 ***
 
@@ -340,7 +338,7 @@ Defined in: [types.ts:104](https://github.com/wix-incubator/chat-viewer/blob/15b
 
 > **scrollOffset**: `undefined` \| `number`
 
-Defined in: [types.ts:98](https://github.com/wix-incubator/chat-viewer/blob/15bf3285badb80da9e01685e151f498ed816c224/lib/types.ts#L98)
+Defined in: [types.ts:95](https://github.com/wix-incubator/chat-viewer/blob/e96df3d365886b675050c785cc1263aee40928fe/lib/types.ts#L95)
 
 ***
 
@@ -348,7 +346,7 @@ Defined in: [types.ts:98](https://github.com/wix-incubator/chat-viewer/blob/15bf
 
 > **scrollSize**: `undefined` \| `number`
 
-Defined in: [types.ts:99](https://github.com/wix-incubator/chat-viewer/blob/15bf3285badb80da9e01685e151f498ed816c224/lib/types.ts#L99)
+Defined in: [types.ts:96](https://github.com/wix-incubator/chat-viewer/blob/e96df3d365886b675050c785cc1263aee40928fe/lib/types.ts#L96)
 
 ***
 
@@ -356,7 +354,7 @@ Defined in: [types.ts:99](https://github.com/wix-incubator/chat-viewer/blob/15bf
 
 > **viewportSize**: `undefined` \| `number`
 
-Defined in: [types.ts:100](https://github.com/wix-incubator/chat-viewer/blob/15bf3285badb80da9e01685e151f498ed816c224/lib/types.ts#L100)
+Defined in: [types.ts:97](https://github.com/wix-incubator/chat-viewer/blob/e96df3d365886b675050c785cc1263aee40928fe/lib/types.ts#L97)
 
 ***
 
@@ -364,7 +362,7 @@ Defined in: [types.ts:100](https://github.com/wix-incubator/chat-viewer/blob/15b
 
 > **vListHandle**: `null` \| `VListHandle`
 
-Defined in: [types.ts:93](https://github.com/wix-incubator/chat-viewer/blob/15bf3285badb80da9e01685e151f498ed816c224/lib/types.ts#L93)
+Defined in: [types.ts:90](https://github.com/wix-incubator/chat-viewer/blob/e96df3d365886b675050c785cc1263aee40928fe/lib/types.ts#L90)
 
 ***
 
@@ -372,7 +370,7 @@ Defined in: [types.ts:93](https://github.com/wix-incubator/chat-viewer/blob/15bf
 
 > **wasIdSeen**: (`id`) => `boolean`
 
-Defined in: [types.ts:112](https://github.com/wix-incubator/chat-viewer/blob/15bf3285badb80da9e01685e151f498ed816c224/lib/types.ts#L112)
+Defined in: [types.ts:109](https://github.com/wix-incubator/chat-viewer/blob/e96df3d365886b675050c785cc1263aee40928fe/lib/types.ts#L109)
 
 #### Parameters
 
@@ -390,7 +388,7 @@ Defined in: [types.ts:112](https://github.com/wix-incubator/chat-viewer/blob/15b
 
 > **wasIndexSeen**: (`index`) => `boolean`
 
-Defined in: [types.ts:111](https://github.com/wix-incubator/chat-viewer/blob/15bf3285badb80da9e01685e151f498ed816c224/lib/types.ts#L111)
+Defined in: [types.ts:108](https://github.com/wix-incubator/chat-viewer/blob/e96df3d365886b675050c785cc1263aee40928fe/lib/types.ts#L108)
 
 #### Parameters
 

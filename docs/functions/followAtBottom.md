@@ -2,13 +2,11 @@
 
 ***
 
-[API Reference](../README.md) / followAtBottom
-
 # Function: followAtBottom()
 
 > **followAtBottom**\<`M`\>(`opts`): [`ChatCallback`](../type-aliases/ChatCallback.md)\<`M`\>
 
-Defined in: [follow-strategies.ts:12](https://github.com/wix-incubator/chat-viewer/blob/15bf3285badb80da9e01685e151f498ed816c224/lib/follow-strategies.ts#L12)
+Defined in: [follow-strategies.ts:12](https://github.com/wix-incubator/chat-viewer/blob/e96df3d365886b675050c785cc1263aee40928fe/lib/follow-strategies.ts#L12)
 
 ## Type Parameters
 

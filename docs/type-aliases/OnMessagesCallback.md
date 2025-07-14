@@ -2,13 +2,11 @@
 
 ***
 
-[API Reference](../README.md) / OnMessagesCallback
-
 # Type Alias: OnMessagesCallback()\<M\>
 
 > **OnMessagesCallback**\<`M`\> = (`handle`, `messages`) => `void`
 
-Defined in: [types.ts:28](https://github.com/wix-incubator/chat-viewer/blob/15bf3285badb80da9e01685e151f498ed816c224/lib/types.ts#L28)
+Defined in: [types.ts:28](https://github.com/wix-incubator/chat-viewer/blob/e96df3d365886b675050c785cc1263aee40928fe/lib/types.ts#L28)
 
 ## Type Parameters
 

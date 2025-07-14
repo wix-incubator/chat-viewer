@@ -2,13 +2,11 @@
 
 ***
 
-[API Reference](../README.md) / IdentifiableMessage
-
 # Type Alias: IdentifiableMessage
 
 > **IdentifiableMessage** = `object`
 
-Defined in: [types.ts:20](https://github.com/wix-incubator/chat-viewer/blob/15bf3285badb80da9e01685e151f498ed816c224/lib/types.ts#L20)
+Defined in: [types.ts:20](https://github.com/wix-incubator/chat-viewer/blob/e96df3d365886b675050c785cc1263aee40928fe/lib/types.ts#L20)
 
 ## Properties
 
@@ -16,4 +14,4 @@ Defined in: [types.ts:20](https://github.com/wix-incubator/chat-viewer/blob/15bf
 
 > **id**: `string` \| `number`
 
-Defined in: [types.ts:20](https://github.com/wix-incubator/chat-viewer/blob/15bf3285badb80da9e01685e151f498ed816c224/lib/types.ts#L20)
+Defined in: [types.ts:20](https://github.com/wix-incubator/chat-viewer/blob/e96df3d365886b675050c785cc1263aee40928fe/lib/types.ts#L20)

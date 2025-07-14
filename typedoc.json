@@ -7,5 +7,6 @@
   "plugin": ["typedoc-plugin-markdown"],
   "groupOrder": ["Variables", "Interfaces", "Type Aliases", "*"],
   "excludeInternal": true,
+  "hideBreadcrumbs": true,
   "readme": "none",
 }
