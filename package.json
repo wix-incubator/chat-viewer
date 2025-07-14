@@ -1,5 +1,5 @@
 {
-  "name": "@wix/chat-viewer",
+  "name": "chat-viewer",
   "version": "0.1.0",
   "type": "module",
   "main": "dist/index.umd.cjs",

@@ -23,7 +23,11 @@ npm install chat-viewer
 
 ## Usage
 
-Here is a simplified example of a chat:
+You can play with this library in our CodeSandbox playground:
+
+[**🛝 CodeSandbox Playground**](https://codesandbox.io/p/devbox/ms9thg)
+
+Long story short, here is a dead simple example of how to user this library:
 
 ```tsx
 import React from 'react';
@@ -81,7 +85,7 @@ function Chat({ messages }: ChatProps) {
 
 Please read our docs for the API here:
 
-[**📑 API Reference**](./docs)
+[**📑 API Reference**](https://github.com/wix-incubator/chat-viewer/tree/master/docs)
 
 ## License
 
