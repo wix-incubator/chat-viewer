@@ -6,7 +6,10 @@
 
 > **OnMessagesCallback**\<`M`\> = (`handle`, `messages`) => `void`
 
-Defined in: [types.ts:28](https://github.com/wix-incubator/chat-viewer/blob/e96df3d365886b675050c785cc1263aee40928fe/lib/types.ts#L28)
+Defined in: [lib/types.ts:62](https://github.com/wix-incubator/chat-viewer/blob/02a795dfb1f4afb798b242c8d48be2ac71542a65/lib/types.ts#L62)
+
+Callback fired when messages updated.
+This library automatically tracks changes to the `messages` prop, so this callback will receive only new messages.
 
 ## Type Parameters
 
@@ -20,9 +23,13 @@ Defined in: [types.ts:28](https://github.com/wix-incubator/chat-viewer/blob/e96d
 
 [`ChatViewerHandle`](../interfaces/ChatViewerHandle.md)\<`M`\>
 
+[ChatViewerHandle](../interfaces/ChatViewerHandle.md) instance. Allows you to control the chat viewer.
+
 ### messages
 
 `M`[]
+
+The current messages.
 
 ## Returns
 

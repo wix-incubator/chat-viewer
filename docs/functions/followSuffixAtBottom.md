@@ -6,7 +6,7 @@
 
 > **followSuffixAtBottom**\<`M`\>(`opts`): [`OnAffixCallback`](../type-aliases/OnAffixCallback.md)\<`M`\>
 
-Defined in: [follow-strategies.ts:58](https://github.com/wix-incubator/chat-viewer/blob/e96df3d365886b675050c785cc1263aee40928fe/lib/follow-strategies.ts#L58)
+Defined in: [lib/follow-strategies.ts:58](https://github.com/wix-incubator/chat-viewer/blob/02a795dfb1f4afb798b242c8d48be2ac71542a65/lib/follow-strategies.ts#L58)
 
 ## Type Parameters
 

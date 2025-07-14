@@ -6,7 +6,9 @@
 
 > **OnAffixCallback**\<`M`\> = (`handle`, `isDisplayed`) => `void`
 
-Defined in: [types.ts:32](https://github.com/wix-incubator/chat-viewer/blob/e96df3d365886b675050c785cc1263aee40928fe/lib/types.ts#L32)
+Defined in: [lib/types.ts:71](https://github.com/wix-incubator/chat-viewer/blob/02a795dfb1f4afb798b242c8d48be2ac71542a65/lib/types.ts#L71)
+
+Callback fired when the [ChatViewerProps.prefix](../interfaces/ChatViewerProps.md#prefix) or [ChatViewerProps.suffix](../interfaces/ChatViewerProps.md#suffix) node is displayed in the viewport.
 
 ## Type Parameters
 
@@ -20,9 +22,13 @@ Defined in: [types.ts:32](https://github.com/wix-incubator/chat-viewer/blob/e96d
 
 [`ChatViewerHandle`](../interfaces/ChatViewerHandle.md)\<`M`\>
 
+[ChatViewerHandle](../interfaces/ChatViewerHandle.md) instance. Allows you to control the chat viewer.
+
 ### isDisplayed
 
 `boolean`
+
+Whether the prefix or suffix is displayed.
 
 ## Returns
 

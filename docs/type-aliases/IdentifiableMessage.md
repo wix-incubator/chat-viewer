@@ -6,7 +6,12 @@
 
 > **IdentifiableMessage** = `object`
 
-Defined in: [types.ts:20](https://github.com/wix-incubator/chat-viewer/blob/e96df3d365886b675050c785cc1263aee40928fe/lib/types.ts#L20)
+Defined in: [lib/types.ts:41](https://github.com/wix-incubator/chat-viewer/blob/02a795dfb1f4afb798b242c8d48be2ac71542a65/lib/types.ts#L41)
+
+IdentifiableMessage type that must have an `id` property.
+This is the base type for messages used in the chat viewer.
+
+This library relies on the `id` property to uniquely identify messages.
 
 ## Properties
 
@@ -14,4 +19,4 @@ Defined in: [types.ts:20](https://github.com/wix-incubator/chat-viewer/blob/e96d
 
 > **id**: `string` \| `number`
 
-Defined in: [types.ts:20](https://github.com/wix-incubator/chat-viewer/blob/e96df3d365886b675050c785cc1263aee40928fe/lib/types.ts#L20)
+Defined in: [lib/types.ts:41](https://github.com/wix-incubator/chat-viewer/blob/02a795dfb1f4afb798b242c8d48be2ac71542a65/lib/types.ts#L41)

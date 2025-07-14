@@ -6,7 +6,7 @@
 
 > `const` **ChatViewer**: \<`M`\>(`props`) => `ReactElement`
 
-Defined in: [chat-viewer.tsx:370](https://github.com/wix-incubator/chat-viewer/blob/e96df3d365886b675050c785cc1263aee40928fe/lib/chat-viewer.tsx#L370)
+Defined in: [lib/chat-viewer.tsx:370](https://github.com/wix-incubator/chat-viewer/blob/02a795dfb1f4afb798b242c8d48be2ac71542a65/lib/chat-viewer.tsx#L370)
 
 ## Type Parameters
 

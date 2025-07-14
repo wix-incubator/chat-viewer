@@ -6,4 +6,6 @@
 
 > **PrefixId** = *typeof* `PREFIX_ID`
 
-Defined in: [types.ts:14](https://github.com/wix-incubator/chat-viewer/blob/e96df3d365886b675050c785cc1263aee40928fe/lib/types.ts#L14)
+Defined in: [lib/types.ts:16](https://github.com/wix-incubator/chat-viewer/blob/02a795dfb1f4afb798b242c8d48be2ac71542a65/lib/types.ts#L16)
+
+A special PrefixId type that represents the ID for the prefix element in the chat viewer.
