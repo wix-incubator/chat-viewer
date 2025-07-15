@@ -6,7 +6,7 @@
 
 > `const` **ChatViewer**: \<`M`\>(`props`) => `ReactElement`
 
-Defined in: [lib/chat-viewer.tsx:375](https://github.com/wix-incubator/chat-viewer/blob/d5c91da65f244d4cd5de38b6c7810418b3052484/lib/chat-viewer.tsx#L375)
+Defined in: [lib/chat-viewer.tsx:375](https://github.com/wix-incubator/chat-viewer/blob/471a1f3ecfdb5a33a5c084cf260a676004074615/lib/chat-viewer.tsx#L375)
 
 ChatViewer component that implements a virtualized chat viewer.
 It supports features like prefix and suffix rendering,

@@ -6,7 +6,7 @@
 
 > **followEveryMessage**\<`M`\>(`opts`): [`OnMessagesCallback`](../type-aliases/OnMessagesCallback.md)\<`M`\>
 
-Defined in: [lib/follow-strategies.ts:28](https://github.com/wix-incubator/chat-viewer/blob/d5c91da65f244d4cd5de38b6c7810418b3052484/lib/follow-strategies.ts#L28)
+Defined in: [lib/follow-strategies.ts:28](https://github.com/wix-incubator/chat-viewer/blob/471a1f3ecfdb5a33a5c084cf260a676004074615/lib/follow-strategies.ts#L28)
 
 ## Type Parameters
 

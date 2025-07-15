@@ -25,7 +25,7 @@ npm install chat-viewer
 
 You can play with this library in our CodeSandbox playground:
 
-[**🛝 CodeSandbox Playground**](https://codesandbox.io/p/devbox/ms9thg)
+[**🛝 CodeSandbox Playground**](https://codesandbox.io/p/devbox/chat-viewer-demo-forked-jtr8nx?embed=1)
 
 Long story short, here is a dead simple example of how to user this library:
 
