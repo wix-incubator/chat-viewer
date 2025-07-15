@@ -365,7 +365,12 @@ function ChatViewerWithRef<M extends IdentifiableMessage>(
 }
 
 /**
- * 
+ * ChatViewer component that implements a virtualized chat viewer.
+ * It supports features like prefix and suffix rendering,
+ * scrolling to specific messages, and tracking seen messages.
+ *
+ * @typeParam M - Type of messages, which must extend {@link IdentifiableMessage}. It can be any type that has an `id` property for unique identifying messages.
+ * @param props - Properties for the chat viewer, including messages, rendering functions, and event handlers.
  */
 export const ChatViewer = memo(forwardRef(ChatViewerWithRef)) as <
   M extends IdentifiableMessage,

@@ -6,7 +6,7 @@
 
 > **ChatCallback**\<`M`\> = (`handle`) => `void`
 
-Defined in: [lib/types.ts:53](https://github.com/wix-incubator/chat-viewer/blob/02a795dfb1f4afb798b242c8d48be2ac71542a65/lib/types.ts#L53)
+Defined in: [lib/types.ts:53](https://github.com/wix-incubator/chat-viewer/blob/d5c91da65f244d4cd5de38b6c7810418b3052484/lib/types.ts#L53)
 
 General callback that receives a [ChatViewerHandle](../interfaces/ChatViewerHandle.md) instance.
 
