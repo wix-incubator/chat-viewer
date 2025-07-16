@@ -1,12 +1,34 @@
 {
   "$schema": "https://typedoc.org/schema.json",
+  "name": "Chat Viewer",
   "entryPoints": [
     "./lib/index.ts"
   ],
-  "name": "API Reference",
+  "outputs": [
+    {
+      "name": "html",
+      "path": "./website",
+    },
+    {
+      "name": "markdown",
+      "path": "./docs",
+      "options": {
+        "hideBreadcrumbs": true,
+      }
+    }
+  ],
   "plugin": ["typedoc-plugin-markdown"],
   "groupOrder": ["Variables", "Interfaces", "Type Aliases", "*"],
+  "navigationLinks": {
+    "Demo": "/demo",
+    "CodeSandbox": "https://codesandbox.io/p/devbox/chat-viewer-demo-forked-jtr8nx",
+    "GitHub": "https://github.com/wix-incubator/chat-viewer"
+  },
+  "sidebarLinks": {
+    "Playground": "/demo"
+  },
   "excludeInternal": true,
-  "hideBreadcrumbs": true,
-  "readme": "none",
+  "headings": {
+    "readme": false
+  }
 }

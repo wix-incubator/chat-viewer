@@ -1,4 +1,4 @@
-[**API Reference**](../README.md)
+[**Chat Viewer**](../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 > **followMessagesBy**\<`M`\>(`shouldFollow`, `opts`): [`OnMessagesCallback`](../type-aliases/OnMessagesCallback.md)\<`M`\>
 
-Defined in: [lib/follow-strategies.ts:118](https://github.com/wix-incubator/chat-viewer/blob/2fbf016d3c8ddf9c67df1f283a6f305bdb2c2dc5/lib/follow-strategies.ts#L118)
+Defined in: [lib/follow-strategies.ts:118](https://github.com/wix-incubator/chat-viewer/blob/83481c9b59373be99cbdd28a40e5ba8a4798e38a/lib/follow-strategies.ts#L118)
 
 Performs a scroll to the bottom of the chat when a message matches the provided condition.
 This is useful for following specific messages that meet a certain criteria, such as mentions or keywords.

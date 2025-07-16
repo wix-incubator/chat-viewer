@@ -1,10 +1,10 @@
-[**API Reference**](../README.md)
+[**Chat Viewer**](../README.md)
 
 ***
 
 # Interface: ChatViewerProps\<M\>
 
-Defined in: [lib/types.ts:100](https://github.com/wix-incubator/chat-viewer/blob/2fbf016d3c8ddf9c67df1f283a6f305bdb2c2dc5/lib/types.ts#L100)
+Defined in: [lib/types.ts:100](https://github.com/wix-incubator/chat-viewer/blob/83481c9b59373be99cbdd28a40e5ba8a4798e38a/lib/types.ts#L100)
 
 Props for the ChatViewer component.
 
@@ -22,7 +22,7 @@ The message type, which must extend [IdentifiableMessage](../type-aliases/Identi
 
 > `optional` **alignment**: [`ChatAlignment`](../type-aliases/ChatAlignment.md)
 
-Defined in: [lib/types.ts:125](https://github.com/wix-incubator/chat-viewer/blob/2fbf016d3c8ddf9c67df1f283a6f305bdb2c2dc5/lib/types.ts#L125)
+Defined in: [lib/types.ts:125](https://github.com/wix-incubator/chat-viewer/blob/83481c9b59373be99cbdd28a40e5ba8a4798e38a/lib/types.ts#L125)
 
 Alignment of the chat list. Determines whether new messages appear at the top or bottom.
 
@@ -38,7 +38,7 @@ Alignment of the chat list. Determines whether new messages appear at the top or
 
 > `optional` **className**: `string`
 
-Defined in: [lib/types.ts:110](https://github.com/wix-incubator/chat-viewer/blob/2fbf016d3c8ddf9c67df1f283a6f305bdb2c2dc5/lib/types.ts#L110)
+Defined in: [lib/types.ts:110](https://github.com/wix-incubator/chat-viewer/blob/83481c9b59373be99cbdd28a40e5ba8a4798e38a/lib/types.ts#L110)
 
 Class name for the root element of the chat viewer.
 
@@ -48,7 +48,7 @@ Class name for the root element of the chat viewer.
 
 > `optional` **historyEndOffset**: `number`
 
-Defined in: [lib/types.ts:187](https://github.com/wix-incubator/chat-viewer/blob/2fbf016d3c8ddf9c67df1f283a6f305bdb2c2dc5/lib/types.ts#L187)
+Defined in: [lib/types.ts:187](https://github.com/wix-incubator/chat-viewer/blob/83481c9b59373be99cbdd28a40e5ba8a4798e38a/lib/types.ts#L187)
 
 Offset in pixels from the end of the history at which to trigger [onHistoryEndReached](#onhistoryendreached).
 
@@ -64,7 +64,7 @@ Offset in pixels from the end of the history at which to trigger [onHistoryEndRe
 
 > `optional` **keepMountedIds**: [`MessageId`](../type-aliases/MessageId.md)\<`M`\>[]
 
-Defined in: [lib/types.ts:148](https://github.com/wix-incubator/chat-viewer/blob/2fbf016d3c8ddf9c67df1f283a6f305bdb2c2dc5/lib/types.ts#L148)
+Defined in: [lib/types.ts:148](https://github.com/wix-incubator/chat-viewer/blob/83481c9b59373be99cbdd28a40e5ba8a4798e38a/lib/types.ts#L148)
 
 [MessageId](../type-aliases/MessageId.md)s of messages to keep mounted even when out of view.
 
@@ -74,7 +74,7 @@ Defined in: [lib/types.ts:148](https://github.com/wix-incubator/chat-viewer/blob
 
 > `optional` **keepMountedIndexes**: `number`[]
 
-Defined in: [lib/types.ts:144](https://github.com/wix-incubator/chat-viewer/blob/2fbf016d3c8ddf9c67df1f283a6f305bdb2c2dc5/lib/types.ts#L144)
+Defined in: [lib/types.ts:144](https://github.com/wix-incubator/chat-viewer/blob/83481c9b59373be99cbdd28a40e5ba8a4798e38a/lib/types.ts#L144)
 
 Indexes of messages to keep mounted even when out of view.
 This allows you to preserve the state of messages that are not currently visible.
@@ -85,7 +85,7 @@ This allows you to preserve the state of messages that are not currently visible
 
 > **messages**: `M`[]
 
-Defined in: [lib/types.ts:153](https://github.com/wix-incubator/chat-viewer/blob/2fbf016d3c8ddf9c67df1f283a6f305bdb2c2dc5/lib/types.ts#L153)
+Defined in: [lib/types.ts:153](https://github.com/wix-incubator/chat-viewer/blob/83481c9b59373be99cbdd28a40e5ba8a4798e38a/lib/types.ts#L153)
 
 The array of messages to display in the chat viewer.
 
@@ -95,7 +95,7 @@ The array of messages to display in the chat viewer.
 
 > `optional` **onAtBottom**: [`ChatCallback`](../type-aliases/ChatCallback.md)\<`M`\>
 
-Defined in: [lib/types.ts:244](https://github.com/wix-incubator/chat-viewer/blob/2fbf016d3c8ddf9c67df1f283a6f305bdb2c2dc5/lib/types.ts#L244)
+Defined in: [lib/types.ts:244](https://github.com/wix-incubator/chat-viewer/blob/83481c9b59373be99cbdd28a40e5ba8a4798e38a/lib/types.ts#L244)
 
 Callback fired when the viewport reaches the bottom of the message list.
 
@@ -109,7 +109,7 @@ Callback fired when the viewport reaches the bottom of the message list.
 
 > `optional` **onAtTop**: [`ChatCallback`](../type-aliases/ChatCallback.md)\<`M`\>
 
-Defined in: [lib/types.ts:238](https://github.com/wix-incubator/chat-viewer/blob/2fbf016d3c8ddf9c67df1f283a6f305bdb2c2dc5/lib/types.ts#L238)
+Defined in: [lib/types.ts:238](https://github.com/wix-incubator/chat-viewer/blob/83481c9b59373be99cbdd28a40e5ba8a4798e38a/lib/types.ts#L238)
 
 Callback fired when the viewport reaches the top of the message list.
 
@@ -123,7 +123,7 @@ Callback fired when the viewport reaches the top of the message list.
 
 > `optional` **onHistoryEndReached**: [`ChatCallback`](../type-aliases/ChatCallback.md)\<`M`\>
 
-Defined in: [lib/types.ts:181](https://github.com/wix-incubator/chat-viewer/blob/2fbf016d3c8ddf9c67df1f283a6f305bdb2c2dc5/lib/types.ts#L181)
+Defined in: [lib/types.ts:181](https://github.com/wix-incubator/chat-viewer/blob/83481c9b59373be99cbdd28a40e5ba8a4798e38a/lib/types.ts#L181)
 
 Callback fired when the user scrolls to the end of the history (top or bottom, depending on alignment).
 
@@ -137,7 +137,7 @@ Callback fired when the user scrolls to the end of the history (top or bottom, d
 
 > `optional` **onKeyDown**: `KeyboardEventHandler`
 
-Defined in: [lib/types.ts:206](https://github.com/wix-incubator/chat-viewer/blob/2fbf016d3c8ddf9c67df1f283a6f305bdb2c2dc5/lib/types.ts#L206)
+Defined in: [lib/types.ts:206](https://github.com/wix-incubator/chat-viewer/blob/83481c9b59373be99cbdd28a40e5ba8a4798e38a/lib/types.ts#L206)
 
 Callback fired on key down events in the scrollable container.
 
@@ -147,7 +147,7 @@ Callback fired on key down events in the scrollable container.
 
 > `optional` **onNewerMessages**: [`OnMessagesCallback`](../type-aliases/OnMessagesCallback.md)\<`M`\>
 
-Defined in: [lib/types.ts:232](https://github.com/wix-incubator/chat-viewer/blob/2fbf016d3c8ddf9c67df1f283a6f305bdb2c2dc5/lib/types.ts#L232)
+Defined in: [lib/types.ts:232](https://github.com/wix-incubator/chat-viewer/blob/83481c9b59373be99cbdd28a40e5ba8a4798e38a/lib/types.ts#L232)
 
 Callback fired when newer messages are requested (e.g., user scrolls to the bottom).
 
@@ -181,7 +181,7 @@ The current messages.
 
 > `optional` **onOlderMessages**: [`OnMessagesCallback`](../type-aliases/OnMessagesCallback.md)\<`M`\>
 
-Defined in: [lib/types.ts:213](https://github.com/wix-incubator/chat-viewer/blob/2fbf016d3c8ddf9c67df1f283a6f305bdb2c2dc5/lib/types.ts#L213)
+Defined in: [lib/types.ts:213](https://github.com/wix-incubator/chat-viewer/blob/83481c9b59373be99cbdd28a40e5ba8a4798e38a/lib/types.ts#L213)
 
 Callback fired when older messages are requested (e.g., user scrolls to the top).
 
@@ -199,7 +199,7 @@ The current messages.
 
 > `optional` **onPrefixDisplay**: [`OnAffixCallback`](../type-aliases/OnAffixCallback.md)\<`M`\>
 
-Defined in: [lib/types.ts:251](https://github.com/wix-incubator/chat-viewer/blob/2fbf016d3c8ddf9c67df1f283a6f305bdb2c2dc5/lib/types.ts#L251)
+Defined in: [lib/types.ts:251](https://github.com/wix-incubator/chat-viewer/blob/83481c9b59373be99cbdd28a40e5ba8a4798e38a/lib/types.ts#L251)
 
 Callback fired when the prefix node is displayed in the viewport.
 
@@ -217,7 +217,7 @@ Whether the prefix is displayed.
 
 > `optional` **onScroll**: (`offset`) => `void`
 
-Defined in: [lib/types.ts:194](https://github.com/wix-incubator/chat-viewer/blob/2fbf016d3c8ddf9c67df1f283a6f305bdb2c2dc5/lib/types.ts#L194)
+Defined in: [lib/types.ts:194](https://github.com/wix-incubator/chat-viewer/blob/83481c9b59373be99cbdd28a40e5ba8a4798e38a/lib/types.ts#L194)
 
 Callback fired on scroll with the current scroll offset.
 
@@ -239,7 +239,7 @@ The current scroll offset.
 
 > `optional` **onScrollEnd**: () => `void`
 
-Defined in: [lib/types.ts:198](https://github.com/wix-incubator/chat-viewer/blob/2fbf016d3c8ddf9c67df1f283a6f305bdb2c2dc5/lib/types.ts#L198)
+Defined in: [lib/types.ts:198](https://github.com/wix-incubator/chat-viewer/blob/83481c9b59373be99cbdd28a40e5ba8a4798e38a/lib/types.ts#L198)
 
 Callback fired when scrolling ends.
 
@@ -253,7 +253,7 @@ Callback fired when scrolling ends.
 
 > `optional` **onSuffixDisplay**: [`OnAffixCallback`](../type-aliases/OnAffixCallback.md)\<`M`\>
 
-Defined in: [lib/types.ts:259](https://github.com/wix-incubator/chat-viewer/blob/2fbf016d3c8ddf9c67df1f283a6f305bdb2c2dc5/lib/types.ts#L259)
+Defined in: [lib/types.ts:259](https://github.com/wix-incubator/chat-viewer/blob/83481c9b59373be99cbdd28a40e5ba8a4798e38a/lib/types.ts#L259)
 
 Callback fired when the suffix node is displayed in the viewport.
 
@@ -275,7 +275,7 @@ Whether the suffix is displayed.
 
 > `optional` **onWheel**: `WheelEventHandler`
 
-Defined in: [lib/types.ts:202](https://github.com/wix-incubator/chat-viewer/blob/2fbf016d3c8ddf9c67df1f283a6f305bdb2c2dc5/lib/types.ts#L202)
+Defined in: [lib/types.ts:202](https://github.com/wix-incubator/chat-viewer/blob/83481c9b59373be99cbdd28a40e5ba8a4798e38a/lib/types.ts#L202)
 
 Callback fired on wheel events in the scrollable container.
 
@@ -285,7 +285,7 @@ Callback fired on wheel events in the scrollable container.
 
 > `optional` **overscan**: `number`
 
-Defined in: [lib/types.ts:132](https://github.com/wix-incubator/chat-viewer/blob/2fbf016d3c8ddf9c67df1f283a6f305bdb2c2dc5/lib/types.ts#L132)
+Defined in: [lib/types.ts:132](https://github.com/wix-incubator/chat-viewer/blob/83481c9b59373be99cbdd28a40e5ba8a4798e38a/lib/types.ts#L132)
 
 Number of extra items to render beyond the visible area (for virtualization performance).
 Passed to Virtua's `overscan` prop.
@@ -300,7 +300,7 @@ https://github.com/inokawa/virtua/blob/main/docs/react/interfaces/VListProps.md#
 
 > `optional` **prefix**: `ReactNode`
 
-Defined in: [lib/types.ts:167](https://github.com/wix-incubator/chat-viewer/blob/2fbf016d3c8ddf9c67df1f283a6f305bdb2c2dc5/lib/types.ts#L167)
+Defined in: [lib/types.ts:167](https://github.com/wix-incubator/chat-viewer/blob/83481c9b59373be99cbdd28a40e5ba8a4798e38a/lib/types.ts#L167)
 
 React node to render before the message list (e.g., a header or history loader).
 It can be conditionally displayed. When changed, it will trigger a [onPrefixDisplay](#onprefixdisplay) callback.
@@ -317,7 +317,7 @@ null
 
 > **renderMessage**: (`message`) => `null` \| `ReactElement`\<`unknown`, `string` \| `JSXElementConstructor`\<`any`\>\>
 
-Defined in: [lib/types.ts:160](https://github.com/wix-incubator/chat-viewer/blob/2fbf016d3c8ddf9c67df1f283a6f305bdb2c2dc5/lib/types.ts#L160)
+Defined in: [lib/types.ts:160](https://github.com/wix-incubator/chat-viewer/blob/83481c9b59373be99cbdd28a40e5ba8a4798e38a/lib/types.ts#L160)
 
 Function to render a message.
 
@@ -341,7 +341,7 @@ A React element or null.
 
 > `optional` **scrollerClassName**: `string`
 
-Defined in: [lib/types.ts:118](https://github.com/wix-incubator/chat-viewer/blob/2fbf016d3c8ddf9c67df1f283a6f305bdb2c2dc5/lib/types.ts#L118)
+Defined in: [lib/types.ts:118](https://github.com/wix-incubator/chat-viewer/blob/83481c9b59373be99cbdd28a40e5ba8a4798e38a/lib/types.ts#L118)
 
 Class name for the scrollable container.
 
@@ -351,7 +351,7 @@ Class name for the scrollable container.
 
 > `optional` **scrollerStyle**: `CSSProperties`
 
-Defined in: [lib/types.ts:114](https://github.com/wix-incubator/chat-viewer/blob/2fbf016d3c8ddf9c67df1f283a6f305bdb2c2dc5/lib/types.ts#L114)
+Defined in: [lib/types.ts:114](https://github.com/wix-incubator/chat-viewer/blob/83481c9b59373be99cbdd28a40e5ba8a4798e38a/lib/types.ts#L114)
 
 Style for the scrollable container.
 
@@ -361,7 +361,7 @@ Style for the scrollable container.
 
 > `optional` **ssrCount**: `number`
 
-Defined in: [lib/types.ts:138](https://github.com/wix-incubator/chat-viewer/blob/2fbf016d3c8ddf9c67df1f283a6f305bdb2c2dc5/lib/types.ts#L138)
+Defined in: [lib/types.ts:138](https://github.com/wix-incubator/chat-viewer/blob/83481c9b59373be99cbdd28a40e5ba8a4798e38a/lib/types.ts#L138)
 
 Number of items to render on the server for SSR. Passed to Virtua's `ssrCount` prop.
 
@@ -375,7 +375,7 @@ https://github.com/inokawa/virtua/blob/main/docs/react/interfaces/VListProps.md#
 
 > `optional` **style**: `CSSProperties`
 
-Defined in: [lib/types.ts:106](https://github.com/wix-incubator/chat-viewer/blob/2fbf016d3c8ddf9c67df1f283a6f305bdb2c2dc5/lib/types.ts#L106)
+Defined in: [lib/types.ts:106](https://github.com/wix-incubator/chat-viewer/blob/83481c9b59373be99cbdd28a40e5ba8a4798e38a/lib/types.ts#L106)
 
 Style for the root element of the chat viewer.
 
@@ -385,7 +385,7 @@ Style for the root element of the chat viewer.
 
 > `optional` **suffix**: `ReactNode`
 
-Defined in: [lib/types.ts:174](https://github.com/wix-incubator/chat-viewer/blob/2fbf016d3c8ddf9c67df1f283a6f305bdb2c2dc5/lib/types.ts#L174)
+Defined in: [lib/types.ts:174](https://github.com/wix-incubator/chat-viewer/blob/83481c9b59373be99cbdd28a40e5ba8a4798e38a/lib/types.ts#L174)
 
 React node to render after the message list (e.g., a footer or typing indicator).
 It can be conditionally displayed. When changed, it will trigger a [onSuffixDisplay](#onsuffixdisplay) callback.

@@ -1,10 +1,10 @@
-[**API Reference**](../README.md)
+[**Chat Viewer**](../README.md)
 
 ***
 
 # Interface: ScrollToItemOpts
 
-Defined in: [lib/types.ts:93](https://github.com/wix-incubator/chat-viewer/blob/2fbf016d3c8ddf9c67df1f283a6f305bdb2c2dc5/lib/types.ts#L93)
+Defined in: [lib/types.ts:93](https://github.com/wix-incubator/chat-viewer/blob/83481c9b59373be99cbdd28a40e5ba8a4798e38a/lib/types.ts#L93)
 
 Options for scrolling to a specific index or message in the chat viewer.
 

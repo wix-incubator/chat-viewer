@@ -8,10 +8,15 @@ pnpm-debug.log*
 lerna-debug.log*
 
 node_modules
+*.local
+
+# Ignore duplicated readme
+docs/README.md
+
+# Build directories
 dist
 dist-ssr
 website
-*.local
 
 # Editor directories and files
 .vscode/*

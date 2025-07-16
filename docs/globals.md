@@ -1,8 +1,8 @@
-**API Reference**
+[**Chat Viewer**](README.md)
 
 ***
 
-# API Reference
+# Chat Viewer
 
 ## Variables
 

@@ -1,10 +1,10 @@
-[**API Reference**](../README.md)
+[**Chat Viewer**](../README.md)
 
 ***
 
 # Interface: ChatViewerHandle\<M\>
 
-Defined in: [lib/types.ts:276](https://github.com/wix-incubator/chat-viewer/blob/2fbf016d3c8ddf9c67df1f283a6f305bdb2c2dc5/lib/types.ts#L276)
+Defined in: [lib/types.ts:276](https://github.com/wix-incubator/chat-viewer/blob/83481c9b59373be99cbdd28a40e5ba8a4798e38a/lib/types.ts#L276)
 
 ## Type Parameters
 
@@ -18,7 +18,7 @@ Defined in: [lib/types.ts:276](https://github.com/wix-incubator/chat-viewer/blob
 
 > **getIdOffset**(`id`): `undefined` \| `number`
 
-Defined in: [lib/types.ts:377](https://github.com/wix-incubator/chat-viewer/blob/2fbf016d3c8ddf9c67df1f283a6f305bdb2c2dc5/lib/types.ts#L377)
+Defined in: [lib/types.ts:377](https://github.com/wix-incubator/chat-viewer/blob/83481c9b59373be99cbdd28a40e5ba8a4798e38a/lib/types.ts#L377)
 
 Returns the scroll offset for the given message ID, or undefined if not available.
 
@@ -40,7 +40,7 @@ The [MessageId](../type-aliases/MessageId.md) to get the offset for.
 
 > **getIdSize**(`id`): `undefined` \| `number`
 
-Defined in: [lib/types.ts:387](https://github.com/wix-incubator/chat-viewer/blob/2fbf016d3c8ddf9c67df1f283a6f305bdb2c2dc5/lib/types.ts#L387)
+Defined in: [lib/types.ts:387](https://github.com/wix-incubator/chat-viewer/blob/83481c9b59373be99cbdd28a40e5ba8a4798e38a/lib/types.ts#L387)
 
 Returns the size of the item with the given message ID, or undefined if not available.
 
@@ -62,7 +62,7 @@ The [MessageId](../type-aliases/MessageId.md) to get the size for.
 
 > **getIndexOffset**(`index`): `undefined` \| `number`
 
-Defined in: [lib/types.ts:372](https://github.com/wix-incubator/chat-viewer/blob/2fbf016d3c8ddf9c67df1f283a6f305bdb2c2dc5/lib/types.ts#L372)
+Defined in: [lib/types.ts:372](https://github.com/wix-incubator/chat-viewer/blob/83481c9b59373be99cbdd28a40e5ba8a4798e38a/lib/types.ts#L372)
 
 Returns the scroll offset for the given index, or undefined if not available.
 
@@ -84,7 +84,7 @@ The index to get the offset for.
 
 > **getIndexSize**(`index`): `undefined` \| `number`
 
-Defined in: [lib/types.ts:382](https://github.com/wix-incubator/chat-viewer/blob/2fbf016d3c8ddf9c67df1f283a6f305bdb2c2dc5/lib/types.ts#L382)
+Defined in: [lib/types.ts:382](https://github.com/wix-incubator/chat-viewer/blob/83481c9b59373be99cbdd28a40e5ba8a4798e38a/lib/types.ts#L382)
 
 Returns the size of the item at the given index, or undefined if not available.
 
@@ -106,7 +106,7 @@ The index to get the size for.
 
 > **isIdInViewport**(`id`): `boolean`
 
-Defined in: [lib/types.ts:357](https://github.com/wix-incubator/chat-viewer/blob/2fbf016d3c8ddf9c67df1f283a6f305bdb2c2dc5/lib/types.ts#L357)
+Defined in: [lib/types.ts:357](https://github.com/wix-incubator/chat-viewer/blob/83481c9b59373be99cbdd28a40e5ba8a4798e38a/lib/types.ts#L357)
 
 Returns true if the given message ID is currently visible in the viewport.
 
@@ -128,7 +128,7 @@ The [MessageId](../type-aliases/MessageId.md) to check.
 
 > **isIndexInViewport**(`index`): `boolean`
 
-Defined in: [lib/types.ts:352](https://github.com/wix-incubator/chat-viewer/blob/2fbf016d3c8ddf9c67df1f283a6f305bdb2c2dc5/lib/types.ts#L352)
+Defined in: [lib/types.ts:352](https://github.com/wix-incubator/chat-viewer/blob/83481c9b59373be99cbdd28a40e5ba8a4798e38a/lib/types.ts#L352)
 
 Returns true if the given index is currently visible in the viewport.
 
@@ -150,7 +150,7 @@ The index to check.
 
 > **scrollBy**(`offset`): `void`
 
-Defined in: [lib/types.ts:409](https://github.com/wix-incubator/chat-viewer/blob/2fbf016d3c8ddf9c67df1f283a6f305bdb2c2dc5/lib/types.ts#L409)
+Defined in: [lib/types.ts:409](https://github.com/wix-incubator/chat-viewer/blob/83481c9b59373be99cbdd28a40e5ba8a4798e38a/lib/types.ts#L409)
 
 Scrolls by the specified offset.
 
@@ -172,7 +172,7 @@ The amount to scroll by.
 
 > **scrollToBottom**(`opts?`): `void`
 
-Defined in: [lib/types.ts:419](https://github.com/wix-incubator/chat-viewer/blob/2fbf016d3c8ddf9c67df1f283a6f305bdb2c2dc5/lib/types.ts#L419)
+Defined in: [lib/types.ts:419](https://github.com/wix-incubator/chat-viewer/blob/83481c9b59373be99cbdd28a40e5ba8a4798e38a/lib/types.ts#L419)
 
 Scrolls to the bottom of the messages list.
 
@@ -194,7 +194,7 @@ Optional scroll options.
 
 > **scrollToId**(`id`, `opts?`): `void`
 
-Defined in: [lib/types.ts:404](https://github.com/wix-incubator/chat-viewer/blob/2fbf016d3c8ddf9c67df1f283a6f305bdb2c2dc5/lib/types.ts#L404)
+Defined in: [lib/types.ts:404](https://github.com/wix-incubator/chat-viewer/blob/83481c9b59373be99cbdd28a40e5ba8a4798e38a/lib/types.ts#L404)
 
 Scrolls to the item with the specified message ID.
 
@@ -222,7 +222,7 @@ Optional scroll options.
 
 > **scrollToIndex**(`index`, `opts?`): `void`
 
-Defined in: [lib/types.ts:398](https://github.com/wix-incubator/chat-viewer/blob/2fbf016d3c8ddf9c67df1f283a6f305bdb2c2dc5/lib/types.ts#L398)
+Defined in: [lib/types.ts:398](https://github.com/wix-incubator/chat-viewer/blob/83481c9b59373be99cbdd28a40e5ba8a4798e38a/lib/types.ts#L398)
 
 Scrolls to the specified index.
 
@@ -250,7 +250,7 @@ Optional scroll options.
 
 > **scrollToOffset**(`offset`): `void`
 
-Defined in: [lib/types.ts:392](https://github.com/wix-incubator/chat-viewer/blob/2fbf016d3c8ddf9c67df1f283a6f305bdb2c2dc5/lib/types.ts#L392)
+Defined in: [lib/types.ts:392](https://github.com/wix-incubator/chat-viewer/blob/83481c9b59373be99cbdd28a40e5ba8a4798e38a/lib/types.ts#L392)
 
 Scrolls to the specified offset.
 
@@ -272,7 +272,7 @@ The scroll offset to scroll to.
 
 > **scrollToTop**(`opts?`): `void`
 
-Defined in: [lib/types.ts:414](https://github.com/wix-incubator/chat-viewer/blob/2fbf016d3c8ddf9c67df1f283a6f305bdb2c2dc5/lib/types.ts#L414)
+Defined in: [lib/types.ts:414](https://github.com/wix-incubator/chat-viewer/blob/83481c9b59373be99cbdd28a40e5ba8a4798e38a/lib/types.ts#L414)
 
 Scrolls to the top of the messages list.
 
@@ -294,7 +294,7 @@ Optional scroll options.
 
 > **atBottom**: `boolean`
 
-Defined in: [lib/types.ts:294](https://github.com/wix-incubator/chat-viewer/blob/2fbf016d3c8ddf9c67df1f283a6f305bdb2c2dc5/lib/types.ts#L294)
+Defined in: [lib/types.ts:294](https://github.com/wix-incubator/chat-viewer/blob/83481c9b59373be99cbdd28a40e5ba8a4798e38a/lib/types.ts#L294)
 
 Whether the viewport is currently at the bottom of the message list.
 Use [ChatViewerProps#onAtBottom](ChatViewerProps.md#onatbottom) to be notified when the viewport reaches the bottom.
@@ -305,7 +305,7 @@ Use [ChatViewerProps#onAtBottom](ChatViewerProps.md#onatbottom) to be notified w
 
 > **atTop**: `boolean`
 
-Defined in: [lib/types.ts:289](https://github.com/wix-incubator/chat-viewer/blob/2fbf016d3c8ddf9c67df1f283a6f305bdb2c2dc5/lib/types.ts#L289)
+Defined in: [lib/types.ts:289](https://github.com/wix-incubator/chat-viewer/blob/83481c9b59373be99cbdd28a40e5ba8a4798e38a/lib/types.ts#L289)
 
 Whether the viewport is currently at the top of the message list.
 Use [ChatViewerProps#onAtTop](ChatViewerProps.md#onattop) to be notified when the viewport reaches the top.
@@ -316,7 +316,7 @@ Use [ChatViewerProps#onAtTop](ChatViewerProps.md#onattop) to be notified when th
 
 > **idsToIndexes**: `Map`\<[`MessageId`](../type-aliases/MessageId.md)\<`M`\>, `number`\>
 
-Defined in: [lib/types.ts:298](https://github.com/wix-incubator/chat-viewer/blob/2fbf016d3c8ddf9c67df1f283a6f305bdb2c2dc5/lib/types.ts#L298)
+Defined in: [lib/types.ts:298](https://github.com/wix-incubator/chat-viewer/blob/83481c9b59373be99cbdd28a40e5ba8a4798e38a/lib/types.ts#L298)
 
 Map of message IDs to their corresponding indexes in the list.
 
@@ -326,7 +326,7 @@ Map of message IDs to their corresponding indexes in the list.
 
 > **indexesToIds**: `Map`\<`number`, [`MessageId`](../type-aliases/MessageId.md)\<`M`\>\>
 
-Defined in: [lib/types.ts:302](https://github.com/wix-incubator/chat-viewer/blob/2fbf016d3c8ddf9c67df1f283a6f305bdb2c2dc5/lib/types.ts#L302)
+Defined in: [lib/types.ts:302](https://github.com/wix-incubator/chat-viewer/blob/83481c9b59373be99cbdd28a40e5ba8a4798e38a/lib/types.ts#L302)
 
 Map of indexes to their corresponding [MessageId](../type-aliases/MessageId.md) in the list.
 
@@ -336,7 +336,7 @@ Map of indexes to their corresponding [MessageId](../type-aliases/MessageId.md) 
 
 > **newestIdInViewport**: `undefined` \| [`MessageId`](../type-aliases/MessageId.md)\<`M`\>
 
-Defined in: [lib/types.ts:346](https://github.com/wix-incubator/chat-viewer/blob/2fbf016d3c8ddf9c67df1f283a6f305bdb2c2dc5/lib/types.ts#L346)
+Defined in: [lib/types.ts:346](https://github.com/wix-incubator/chat-viewer/blob/83481c9b59373be99cbdd28a40e5ba8a4798e38a/lib/types.ts#L346)
 
 The [MessageId](../type-aliases/MessageId.md) of the newest message currently visible in the viewport, or undefined if not available.
 
@@ -346,7 +346,7 @@ The [MessageId](../type-aliases/MessageId.md) of the newest message currently vi
 
 > **newestIndexInViewport**: `number`
 
-Defined in: [lib/types.ts:342](https://github.com/wix-incubator/chat-viewer/blob/2fbf016d3c8ddf9c67df1f283a6f305bdb2c2dc5/lib/types.ts#L342)
+Defined in: [lib/types.ts:342](https://github.com/wix-incubator/chat-viewer/blob/83481c9b59373be99cbdd28a40e5ba8a4798e38a/lib/types.ts#L342)
 
 The index of the newest message currently visible in the viewport.
 
@@ -356,7 +356,7 @@ The index of the newest message currently visible in the viewport.
 
 > **newestSeenId**: `undefined` \| [`MessageId`](../type-aliases/MessageId.md)\<`M`\>
 
-Defined in: [lib/types.ts:318](https://github.com/wix-incubator/chat-viewer/blob/2fbf016d3c8ddf9c67df1f283a6f305bdb2c2dc5/lib/types.ts#L318)
+Defined in: [lib/types.ts:318](https://github.com/wix-incubator/chat-viewer/blob/83481c9b59373be99cbdd28a40e5ba8a4798e38a/lib/types.ts#L318)
 
 The [MessageId](../type-aliases/MessageId.md) of the newest message that is present in the viewport, or undefined if not available.
 
@@ -366,7 +366,7 @@ The [MessageId](../type-aliases/MessageId.md) of the newest message that is pres
 
 > **newestSeenIndex**: `undefined` \| `number`
 
-Defined in: [lib/types.ts:322](https://github.com/wix-incubator/chat-viewer/blob/2fbf016d3c8ddf9c67df1f283a6f305bdb2c2dc5/lib/types.ts#L322)
+Defined in: [lib/types.ts:322](https://github.com/wix-incubator/chat-viewer/blob/83481c9b59373be99cbdd28a40e5ba8a4798e38a/lib/types.ts#L322)
 
 The index of the newest message that is present in the viewport, or undefined if not available.
 
@@ -376,7 +376,7 @@ The index of the newest message that is present in the viewport, or undefined if
 
 > **oldestIdInViewport**: `undefined` \| [`MessageId`](../type-aliases/MessageId.md)\<`M`\>
 
-Defined in: [lib/types.ts:338](https://github.com/wix-incubator/chat-viewer/blob/2fbf016d3c8ddf9c67df1f283a6f305bdb2c2dc5/lib/types.ts#L338)
+Defined in: [lib/types.ts:338](https://github.com/wix-incubator/chat-viewer/blob/83481c9b59373be99cbdd28a40e5ba8a4798e38a/lib/types.ts#L338)
 
 The [MessageId](../type-aliases/MessageId.md) of the oldest message currently visible in the viewport, or undefined if not available.
 
@@ -386,7 +386,7 @@ The [MessageId](../type-aliases/MessageId.md) of the oldest message currently vi
 
 > **oldestIndexInViewport**: `number`
 
-Defined in: [lib/types.ts:334](https://github.com/wix-incubator/chat-viewer/blob/2fbf016d3c8ddf9c67df1f283a6f305bdb2c2dc5/lib/types.ts#L334)
+Defined in: [lib/types.ts:334](https://github.com/wix-incubator/chat-viewer/blob/83481c9b59373be99cbdd28a40e5ba8a4798e38a/lib/types.ts#L334)
 
 The index of the oldest message currently visible in the viewport.
 
@@ -396,7 +396,7 @@ The index of the oldest message currently visible in the viewport.
 
 > **oldestSeenId**: `undefined` \| [`MessageId`](../type-aliases/MessageId.md)\<`M`\>
 
-Defined in: [lib/types.ts:326](https://github.com/wix-incubator/chat-viewer/blob/2fbf016d3c8ddf9c67df1f283a6f305bdb2c2dc5/lib/types.ts#L326)
+Defined in: [lib/types.ts:326](https://github.com/wix-incubator/chat-viewer/blob/83481c9b59373be99cbdd28a40e5ba8a4798e38a/lib/types.ts#L326)
 
 The [MessageId](../type-aliases/MessageId.md) of the oldest message that has been seen (was at least once within the viewport), or undefined if not available.
 
@@ -406,7 +406,7 @@ The [MessageId](../type-aliases/MessageId.md) of the oldest message that has bee
 
 > **oldestSeenIndex**: `undefined` \| `number`
 
-Defined in: [lib/types.ts:330](https://github.com/wix-incubator/chat-viewer/blob/2fbf016d3c8ddf9c67df1f283a6f305bdb2c2dc5/lib/types.ts#L330)
+Defined in: [lib/types.ts:330](https://github.com/wix-incubator/chat-viewer/blob/83481c9b59373be99cbdd28a40e5ba8a4798e38a/lib/types.ts#L330)
 
 The index of the oldest message that has been seen (was at least once within the viewport), or undefined if not available.
 
@@ -416,7 +416,7 @@ The index of the oldest message that has been seen (was at least once within the
 
 > **scrollOffset**: `undefined` \| `number`
 
-Defined in: [lib/types.ts:306](https://github.com/wix-incubator/chat-viewer/blob/2fbf016d3c8ddf9c67df1f283a6f305bdb2c2dc5/lib/types.ts#L306)
+Defined in: [lib/types.ts:306](https://github.com/wix-incubator/chat-viewer/blob/83481c9b59373be99cbdd28a40e5ba8a4798e38a/lib/types.ts#L306)
 
 Current scroll offset, or undefined if not available.
 
@@ -426,7 +426,7 @@ Current scroll offset, or undefined if not available.
 
 > **scrollSize**: `undefined` \| `number`
 
-Defined in: [lib/types.ts:310](https://github.com/wix-incubator/chat-viewer/blob/2fbf016d3c8ddf9c67df1f283a6f305bdb2c2dc5/lib/types.ts#L310)
+Defined in: [lib/types.ts:310](https://github.com/wix-incubator/chat-viewer/blob/83481c9b59373be99cbdd28a40e5ba8a4798e38a/lib/types.ts#L310)
 
 Total scrollable size, or undefined if not available.
 
@@ -436,7 +436,7 @@ Total scrollable size, or undefined if not available.
 
 > **viewportSize**: `undefined` \| `number`
 
-Defined in: [lib/types.ts:314](https://github.com/wix-incubator/chat-viewer/blob/2fbf016d3c8ddf9c67df1f283a6f305bdb2c2dc5/lib/types.ts#L314)
+Defined in: [lib/types.ts:314](https://github.com/wix-incubator/chat-viewer/blob/83481c9b59373be99cbdd28a40e5ba8a4798e38a/lib/types.ts#L314)
 
 Size of the viewport, or undefined if not available.
 
@@ -446,7 +446,7 @@ Size of the viewport, or undefined if not available.
 
 > **vListHandle**: `null` \| `VListHandle`
 
-Defined in: [lib/types.ts:284](https://github.com/wix-incubator/chat-viewer/blob/2fbf016d3c8ddf9c67df1f283a6f305bdb2c2dc5/lib/types.ts#L284)
+Defined in: [lib/types.ts:284](https://github.com/wix-incubator/chat-viewer/blob/83481c9b59373be99cbdd28a40e5ba8a4798e38a/lib/types.ts#L284)
 
 Reference to the underlying Virtua's `VListHandle`, or null if not available.
 
@@ -460,7 +460,7 @@ https://github.com/inokawa/virtua/blob/main/docs/react/interfaces/VListHandle.md
 
 > **wasIdSeen**: (`id`) => `boolean`
 
-Defined in: [lib/types.ts:367](https://github.com/wix-incubator/chat-viewer/blob/2fbf016d3c8ddf9c67df1f283a6f305bdb2c2dc5/lib/types.ts#L367)
+Defined in: [lib/types.ts:367](https://github.com/wix-incubator/chat-viewer/blob/83481c9b59373be99cbdd28a40e5ba8a4798e38a/lib/types.ts#L367)
 
 Returns true if the given message ID has ever been seen in the viewport.
 
@@ -482,7 +482,7 @@ The [MessageId](../type-aliases/MessageId.md) to check.
 
 > **wasIndexSeen**: (`index`) => `boolean`
 
-Defined in: [lib/types.ts:362](https://github.com/wix-incubator/chat-viewer/blob/2fbf016d3c8ddf9c67df1f283a6f305bdb2c2dc5/lib/types.ts#L362)
+Defined in: [lib/types.ts:362](https://github.com/wix-incubator/chat-viewer/blob/83481c9b59373be99cbdd28a40e5ba8a4798e38a/lib/types.ts#L362)
 
 Returns true if the given index has ever been seen in the viewport.
 

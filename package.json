@@ -20,10 +20,11 @@
     "dev": "vite",
     "build": "npm run build:lib && npm run build:demo",
     "build:lib": "tsc --p ./tsconfig.esm.json && vite build",
+    "build:docs": "typedoc",
     "build:demo": "vite build --mode demo",
+    "build:website": "npm run build:docs && npm run build:demo",
     "lint": "eslint .",
     "preview": "vite preview",
-    "typedoc": "typedoc",
     "prepublish": "npm run build:lib"
   },
   "peerDependencies": {

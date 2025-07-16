@@ -34,12 +34,12 @@ const lib: UserConfig = {
 };
 
 const demo: UserConfig = {
-  base: './',
+  base: '/demo',
   plugins: [
     react(),
   ],
   build: {
-    outDir: 'website',
+    outDir: 'website/demo',
   },
 };
 
@@ -47,6 +47,5 @@ export default defineConfig(({ mode }) => {
   if (mode === 'demo') {
     return demo;
   }
-
   return lib;
 })

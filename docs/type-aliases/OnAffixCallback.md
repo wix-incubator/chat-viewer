@@ -1,4 +1,4 @@
-[**API Reference**](../README.md)
+[**Chat Viewer**](../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 > **OnAffixCallback**\<`M`\> = (`handle`, `isDisplayed`) => `void`
 
-Defined in: [lib/types.ts:71](https://github.com/wix-incubator/chat-viewer/blob/2fbf016d3c8ddf9c67df1f283a6f305bdb2c2dc5/lib/types.ts#L71)
+Defined in: [lib/types.ts:71](https://github.com/wix-incubator/chat-viewer/blob/83481c9b59373be99cbdd28a40e5ba8a4798e38a/lib/types.ts#L71)
 
 Callback fired when the [ChatViewerProps.prefix](../interfaces/ChatViewerProps.md#prefix) or [ChatViewerProps.suffix](../interfaces/ChatViewerProps.md#suffix) node is displayed in the viewport.
 

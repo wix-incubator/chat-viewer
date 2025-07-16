@@ -25,7 +25,7 @@ npm install chat-viewer
 
 You can play with this library in our CodeSandbox playground:
 
-[**🛝 CodeSandbox Playground**](https://codesandbox.io/p/devbox/chat-viewer-demo-forked-jtr8nx?embed=1)
+[**🛝 CodeSandbox Playground**](https://codesandbox.io/p/devbox/chat-viewer-demo-forked-jtr8nx)
 
 Long story short, here is a dead simple example of how to user this library:
 
@@ -85,7 +85,7 @@ function Chat({ messages }: ChatProps) {
 
 Please read our docs for the API here:
 
-[**📑 API Reference**](https://github.com/wix-incubator/chat-viewer/tree/master/docs)
+[**📑 API Reference**](https://github.com/wix-incubator/chat-viewer/tree/master/docs/globals.md)
 
 ## License
 
