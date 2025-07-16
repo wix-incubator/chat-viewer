@@ -31,7 +31,7 @@ jobs:
           node-version: current
           cache: npm
       - name: Install Dependencies
-        run: npm ci
+        run: npm install 
       - name: Build Website
         run: npm run build:website
       - name: Upload artifact
