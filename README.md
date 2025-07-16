@@ -1,4 +1,4 @@
-# Wix Chat Viewer
+# [Wix Chat Viewer][chat-viewer]
 
 A library for rendering chats with virtualization.
 
@@ -23,9 +23,11 @@ npm install chat-viewer
 
 ## Usage
 
-You can play with this library in our CodeSandbox playground:
+Read documentation or play with this library in our Demo or CodeSandbox playground:
 
-[**🛝 CodeSandbox Playground**](https://codesandbox.io/p/devbox/chat-viewer-demo-forked-jtr8nx)
+* [**📑 Documentation**][chat-viewer]
+* [**📋 Demo**](https://wix-incubator.github.io/chat-viewer/demo)
+* [**🛝 CodeSandbox Playground**](https://codesandbox.io/p/devbox/chat-viewer-demo-forked-jtr8nx)
 
 Long story short, here is a dead simple example of how to user this library:
 
@@ -90,3 +92,6 @@ Please read our docs for the API here:
 ## License
 
 MIT © Wix.com
+
+<!-- References -->
+[chat-viewer]: https://wix-incubator.github.io/chat-viewer
