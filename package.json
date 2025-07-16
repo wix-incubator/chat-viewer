@@ -24,8 +24,7 @@
     "build:demo": "vite build --mode demo",
     "build:website": "npm run build:docs && npm run build:demo",
     "lint": "eslint .",
-    "preview": "vite preview",
-    "prepublish": "npm run build:lib"
+    "preview": "vite preview"
   },
   "peerDependencies": {
     "react": "^19.1.0",
