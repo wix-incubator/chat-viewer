@@ -12,7 +12,7 @@
 
 - [ChatViewerHandle](interfaces/ChatViewerHandle.md)
 - [ChatViewerProps](interfaces/ChatViewerProps.md)
-- [ScrollToIndexOpts](interfaces/ScrollToIndexOpts.md)
+- [ScrollToItemOpts](interfaces/ScrollToItemOpts.md)
 
 ## Type Aliases
 

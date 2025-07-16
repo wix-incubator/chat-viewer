@@ -6,7 +6,7 @@
 
 > **followSuffixAtBottom**\<`M`\>(`opts`): [`OnAffixCallback`](../type-aliases/OnAffixCallback.md)\<`M`\>
 
-Defined in: [lib/follow-strategies.ts:58](https://github.com/wix-incubator/chat-viewer/blob/471a1f3ecfdb5a33a5c084cf260a676004074615/lib/follow-strategies.ts#L58)
+Defined in: [lib/follow-strategies.ts:135](https://github.com/wix-incubator/chat-viewer/blob/2fbf016d3c8ddf9c67df1f283a6f305bdb2c2dc5/lib/follow-strategies.ts#L135)
 
 ## Type Parameters
 
@@ -20,6 +20,10 @@ Defined in: [lib/follow-strategies.ts:58](https://github.com/wix-incubator/chat-
 
 `ScrollToIndexOpts` = `DEFAULT_SCROLL_OPTS`
 
+{ScrollToItemOpts} options for controlling the scroll behavior
+
 ## Returns
 
 [`OnAffixCallback`](../type-aliases/OnAffixCallback.md)\<`M`\>
+
+A callback that performs the scroll action when the suffix is visible.

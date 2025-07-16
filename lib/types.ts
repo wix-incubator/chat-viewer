@@ -90,7 +90,7 @@ export type OnAffixCallback<
  *
  * @see https://github.com/inokawa/virtua#scrolltoindex
  */
-export type ScrollToIndexOpts = VirtuaScrollToIndexOpts;
+export type ScrollToItemOpts = VirtuaScrollToIndexOpts;
 
 /**
  * Props for the ChatViewer component.
@@ -153,33 +153,42 @@ export interface ChatViewerProps<
   messages: M[];
   /**
    * Function to render a message.
+   * 
    * @param message - The message to render.
    * @returns A React element or null.
    */
   renderMessage: (message: M) => ReactElement | null;
   /**
-   * React node to render before the message list (e.g., a header or loader).
+   * React node to render before the message list (e.g., a header or history loader).
    * It can be conditionally displayed. When changed, it will trigger a {@link onPrefixDisplay} callback.
+   * 
+   * @defaultValue null
    */
   prefix?: ReactNode;
   /**
-   * React node to render after the message list (e.g., a footer or loader).
+   * React node to render after the message list (e.g., a footer or typing indicator).
    * It can be conditionally displayed. When changed, it will trigger a {@link onSuffixDisplay} callback.
+   * 
+   * @defaultValue null
    */
   suffix?: ReactNode;
 
   /**
    * Callback fired when the user scrolls to the end of the history (top or bottom, depending on alignment).
+   * 
    * @param handle - {@link ChatViewerHandle} instance. Allows you to control the chat viewer.
    */
   onHistoryEndReached?: ChatCallback<M>;
   /**
    * Offset in pixels from the end of the history at which to trigger {@link onHistoryEndReached}.
+   * 
+   * @defaultValue 10
    */
   historyEndOffset?: number;
 
   /**
    * Callback fired on scroll with the current scroll offset.
+   * 
    * @param offset - The current scroll offset.
    */
   onScroll?: (offset: number) => void;
@@ -197,47 +206,70 @@ export interface ChatViewerProps<
   onKeyDown?: KeyboardEventHandler;
   /**
    * Callback fired when older messages are requested (e.g., user scrolls to the top).
+   * 
    * @param handle - {@link ChatViewerHandle} instance. Allows you to control the chat viewer.
    * @param messages - The current messages.
    */
   onOlderMessages?: OnMessagesCallback<M>;
   /**
    * Callback fired when newer messages are requested (e.g., user scrolls to the bottom).
+   * 
+   * @example
+   * You might want to use this callback with utility functions like {@link followEveryMessage}, {@link followMessagesAtBottom}, or {@link followMessagesBy} to automatically scroll to automatically follow new messages.
+   * 
+   * ```tsx
+   * <ChatViewer
+   *   messages={messages}
+   *   renderMessage={renderMessage}
+   *   onNewerMessages={followMessagesAtBottom()}
+   * />
+   * ```
+   * 
    * @param handle - {@link ChatViewerHandle} instance. Allows you to control the chat viewer.
    * @param messages - The current messages.
+   * @defaultValue {@link followMessagesAtBottom} - scrolls to the bottom when viewport is at the bottom of the history.
    */
   onNewerMessages?: OnMessagesCallback<M>;
   /**
    * Callback fired when the viewport reaches the top of the message list.
+   * 
    * @param handle - {@link ChatViewerHandle} instance. Allows you to control the chat viewer.
    */
   onAtTop?: ChatCallback<M>;
   /**
    * Callback fired when the viewport reaches the bottom of the message list.
+   * 
    * @param handle - {@link ChatViewerHandle} instance. Allows you to control the chat viewer.
    */
   onAtBottom?: ChatCallback<M>;
   /**
    * Callback fired when the prefix node is displayed in the viewport.
+   * 
    * @param handle - {@link ChatViewerHandle} instance. Allows you to control the chat viewer.
    * @param isDisplayed - Whether the prefix is displayed.
    */
   onPrefixDisplay?: OnAffixCallback<M>;
   /**
    * Callback fired when the suffix node is displayed in the viewport.
+   * 
    * @param handle - {@link ChatViewerHandle} instance. Allows you to control the chat viewer.
    * @param isDisplayed - Whether the suffix is displayed.
+   * @defaultValue {@link followSuffixAtBottom} - scrolls to the bottom when viewport when suffix is displayed at the bottom of the history.
    */
   onSuffixDisplay?: OnAffixCallback<M>;
 }
 
 /**
  * Props for the ChatViewer component with a forwarded ref.
+ * 
  * @internal
  */
 export interface ChatViewerPropsWithRef<
   M extends IdentifiableMessage = IdentifiableMessage,
 > extends ChatViewerProps<M> {
+  /**
+   * A React ref created by `useRef` hook. It will expose {@link ChatViewerHandle} instance for imperative control over the chat viewer.
+   */
   ref: Ref<ChatViewerHandle<M>>;
 }
 
@@ -363,13 +395,13 @@ export interface ChatViewerHandle<
    * @param index - The index to scroll to.
    * @param opts - Optional scroll options.
    */
-  scrollToIndex(index: number, opts?: ScrollToIndexOpts): void;
+  scrollToIndex(index: number, opts?: ScrollToItemOpts): void;
   /**
    * Scrolls to the item with the specified message ID.
    * @param id - The message ID to scroll to.
    * @param opts - Optional scroll options.
    */
-  scrollToId(id: MessageId<M>, opts?: ScrollToIndexOpts): void;
+  scrollToId(id: MessageId<M>, opts?: ScrollToItemOpts): void;
   /**
    * Scrolls by the specified offset.
    * @param offset - The amount to scroll by.
@@ -379,10 +411,10 @@ export interface ChatViewerHandle<
    * Scrolls to the top of the messages list.
    * @param opts - Optional scroll options.
    */
-  scrollToTop(opts?: ScrollToIndexOpts): void;
+  scrollToTop(opts?: ScrollToItemOpts): void;
   /**
    * Scrolls to the bottom of the messages list.
    * @param opts - Optional scroll options.
    */
-  scrollToBottom(opts?: ScrollToIndexOpts): void;
+  scrollToBottom(opts?: ScrollToItemOpts): void;
 }
