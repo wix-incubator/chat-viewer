@@ -20,12 +20,12 @@
   "plugin": ["typedoc-plugin-markdown"],
   "groupOrder": ["Variables", "Interfaces", "Type Aliases", "*"],
   "navigationLinks": {
-    "Demo": "/demo",
+    "Demo": "/chat-viewer/demo",
     "CodeSandbox": "https://codesandbox.io/p/devbox/chat-viewer-demo-forked-jtr8nx",
     "GitHub": "https://github.com/wix-incubator/chat-viewer"
   },
   "sidebarLinks": {
-    "Playground": "/demo"
+    "Playground": "/chat-viewer/demo"
   },
   "excludeInternal": true,
   "headings": {
