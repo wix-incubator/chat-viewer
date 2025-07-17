@@ -1,9 +1,12 @@
 // https://vitejs.dev/config/
+/// <reference types="vite/client" />
 
 import { defineConfig, UserConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import dts from 'vite-plugin-dts'
 import { resolve } from 'path'
+
+const DEV = import.meta.env.DEV;
 
 const lib: UserConfig = {
   plugins: [
@@ -34,7 +37,7 @@ const lib: UserConfig = {
 };
 
 const demo: UserConfig = {
-  base: '/demo',
+  base: DEV ? '/demo' : '/chat-viewer/demo',
   plugins: [
     react(),
   ],
