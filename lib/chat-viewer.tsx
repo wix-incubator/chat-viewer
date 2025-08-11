@@ -2,6 +2,7 @@ import {
   type Ref,
   type ReactElement,
   type CSSProperties,
+  Fragment,
   forwardRef,
   memo,
   useCallback,
@@ -358,7 +359,9 @@ function ChatViewerWithRef<M extends IdentifiableMessage>(
         onWheel={onWheel}
         onKeyDown={onKeyDown}
       >
-        {items.map(({ element }) => element)}
+        {items.map(({ id, element }) => (
+          <Fragment key={id}>{element}</Fragment>
+        ))}
       </VList>
     </div>
   );
