@@ -96,8 +96,8 @@ function ChatViewerWithRef<M extends IdentifiableMessage>(
   const items = useMemo(
     () => [
       ...(prefixItem ? [prefixItem] : []),
-      ...messages.map((message) =>
-        toItem<M>(message.id, renderMessage(message)),
+      ...messages.map((message, index, messages) =>
+        toItem<M>(message.id, renderMessage(message, index, messages)),
       ),
       ...(suffixItem ? [suffixItem] : []),
     ],

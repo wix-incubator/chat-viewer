@@ -157,7 +157,7 @@ export interface ChatViewerProps<
    * @param message - The message to render.
    * @returns A React element or null.
    */
-  renderMessage: (message: M) => ReactElement | null;
+  renderMessage: (message: M, index: number, messages: M[]) => ReactElement | null;
   /**
    * React node to render before the message list (e.g., a header or history loader).
    * It can be conditionally displayed. When changed, it will trigger a {@link onPrefixDisplay} callback.
