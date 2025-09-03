@@ -77,6 +77,8 @@ function Chat({ messages }: ChatProps) {
         // When 100 offset from the top of the chat is reached, then loadHistory is triggered
         historyEndOffset={100}
         onHistoryEndReached={loadHistory}
+        // This allows you to keep some messages mounted and preserve their state when they leave viewport
+        keepMountedIds={message[0].id}
       />
     </div>
   )
