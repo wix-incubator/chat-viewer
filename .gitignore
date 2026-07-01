@@ -8,6 +8,9 @@ pnpm-debug.log*
 lerna-debug.log*
 
 node_modules
+.yarn/*
+!.yarn/releases
+!.yarn/releases/**
 *.local
 
 # Ignore duplicated readme
