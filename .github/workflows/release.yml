@@ -28,12 +28,16 @@ jobs:
           fi
 
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
+
+      - name: Enable Corepack
+        run: corepack enable
 
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
         with:
           node-version: 24
+          cache: yarn
           registry-url: 'https://registry.npmjs.org'
 
       - name: Set release version
@@ -45,19 +49,19 @@ jobs:
             exit 1
           fi
 
-          npm version "$VERSION" --no-git-tag-version
+          yarn version "$VERSION" --immediate
 
       - name: Install dependencies
-        run: npm ci
+        run: NPQ_PKG_MGR=yarn npx npq install
 
       - name: Run linter
-        run: npm run lint
+        run: yarn lint
 
       - name: Check formatting
-        run: npm run format:check
+        run: yarn format:check
 
       - name: Build package
-        run: npm run build:lib
+        run: yarn build:lib
 
       - name: Publish package
         run: npm publish

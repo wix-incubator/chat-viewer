@@ -4,6 +4,7 @@
   "description": "A library for rendering chats with virtualization",
   "type": "module",
   "license": "MIT",
+  "packageManager": "yarn@4.10.3",
   "repository": {
     "type": "git",
     "url": "https://github.com/wix-incubator/chat-viewer.git"
@@ -32,11 +33,11 @@
   ],
   "scripts": {
     "dev": "vite",
-    "build": "npm run build:lib && npm run build:demo",
+    "build": "yarn build:lib && yarn build:demo",
     "build:lib": "tsc --p ./tsconfig.esm.json && vite build",
     "build:docs": "typedoc",
     "build:demo": "vite build --mode demo",
-    "build:website": "npm run build:docs && npm run build:demo",
+    "build:website": "yarn build:docs && yarn build:demo",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "format": "prettier --write --ignore-unknown .",
