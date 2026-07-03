@@ -9,8 +9,8 @@ import type {
 
 import type {
   ScrollToIndexOpts as VirtuaScrollToIndexOpts,
-  VListHandle,
-  VListProps,
+  VirtualizerHandle,
+  VirtualizerProps,
 } from 'virtua';
 import type { PREFIX_ID, SUFFIX_ID } from './const';
 
@@ -128,18 +128,25 @@ export interface ChatViewerProps<
    */
   alignment?: ChatAlignment;
   /**
-   * Number of extra items to render beyond the visible area (for virtualization performance).
-   * Passed to Virtua's `overscan` prop.
+   * Extra item space in pixels to render beyond the visible area (for virtualization performance).
+   * Passed to Virtua's `bufferSize` prop when `bufferSize` is not set.
    *
-   * @see https://github.com/inokawa/virtua/blob/main/docs/react/interfaces/VListProps.md#overscan
+   * @deprecated Use {@link bufferSize} instead.
    */
-  overscan?: VListProps['overscan'];
+  overscan?: number;
+  /**
+   * Extra item space in pixels to render beyond the visible area (for virtualization performance).
+   * Passed to Virtua's `bufferSize` prop.
+   *
+   * @see https://github.com/inokawa/virtua/blob/main/docs/react/interfaces/VirtualizerProps.md#buffersize
+   */
+  bufferSize?: VirtualizerProps['bufferSize'];
   /**
    * Number of items to render on the server for SSR. Passed to Virtua's `ssrCount` prop.
    *
-   * @see https://github.com/inokawa/virtua/blob/main/docs/react/interfaces/VListProps.md#ssrcount
+   * @see https://github.com/inokawa/virtua/blob/main/docs/react/interfaces/VirtualizerProps.md#ssrcount
    */
-  ssrCount?: VListProps['ssrCount'];
+  ssrCount?: VirtualizerProps['ssrCount'];
 
   /**
    * Indexes of messages to keep mounted even when out of view.
@@ -285,11 +292,18 @@ export interface ChatViewerHandle<
   M extends IdentifiableMessage = IdentifiableMessage,
 > {
   /**
-   * Reference to the underlying Virtua's `VListHandle`, or null if not available.
+   * Reference to the underlying Virtua handle, or null if not available.
    *
-   * @see https://github.com/inokawa/virtua/blob/main/docs/react/interfaces/VListHandle.md
+   * @see https://github.com/inokawa/virtua/blob/main/docs/react/interfaces/VirtualizerHandle.md
    */
-  vListHandle: VListHandle | null;
+  virtualizerHandle: VirtualizerHandle | null;
+  /**
+   * Reference to the underlying Virtua handle, or null if not available.
+   *
+   * @deprecated Use {@link virtualizerHandle} instead.
+   * @see https://github.com/inokawa/virtua/blob/main/docs/react/interfaces/VirtualizerHandle.md
+   */
+  vListHandle: VirtualizerHandle | null;
   /**
    * Whether the viewport is currently at the top of the message list.
    * Use {@link ChatViewerProps#onAtTop} to be notified when the viewport reaches the top.

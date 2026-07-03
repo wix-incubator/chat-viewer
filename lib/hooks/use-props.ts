@@ -14,6 +14,7 @@ type OptionalProps =
   | 'scrollerStyle'
   | 'scrollerClassName'
   | 'overscan'
+  | 'bufferSize'
   | 'ssrCount'
   | 'keepMountedIndexes'
   | 'keepMountedIds';
@@ -35,6 +36,7 @@ export function useProps<M extends IdentifiableMessage>(
     scrollerClassName: props.scrollerClassName,
 
     overscan: props.overscan,
+    bufferSize: props.bufferSize,
     ssrCount: props.ssrCount,
 
     keepMountedIndexes: props.keepMountedIndexes,

@@ -13,7 +13,11 @@ import {
   useState,
 } from 'react';
 
-import { type ScrollToIndexOpts, type VListHandle, VList } from 'virtua';
+import {
+  type ScrollToIndexOpts,
+  type VirtualizerHandle,
+  Virtualizer,
+} from 'virtua';
 
 import { useProps, useCompareMessages, useSeenIdsTracking } from './hooks';
 import { IDX_NOT_FOUND, PREFIX_ID, SUFFIX_ID } from './const';
@@ -41,6 +45,7 @@ function ChatViewerWithRef<M extends IdentifiableMessage>(
     scrollerClassName,
     alignment,
     overscan,
+    bufferSize,
     keepMountedIndexes,
     keepMountedIds,
     ssrCount,
@@ -62,7 +67,7 @@ function ChatViewerWithRef<M extends IdentifiableMessage>(
     onSuffixDisplay,
   } = useProps<M>(props);
   const handle = ref as Ref<ChatViewerHandle<M>>;
-  const vListHandle = useRef<VListHandle>(null);
+  const virtualizerHandle = useRef<VirtualizerHandle>(null);
   const [atTop, setAtTop] = useState(false);
   const [atBottom, setAtBottom] = useState(true);
   const { prepended: older, appended: newer } = useCompareMessages(messages);
@@ -128,7 +133,8 @@ function ChatViewerWithRef<M extends IdentifiableMessage>(
     trackSeen,
   } = useSeenIdsTracking(
     {
-      vListHandle,
+      virtualizerHandle,
+      vListHandle: virtualizerHandle,
       idsToIndexes,
       indexesToIds,
     },
@@ -137,10 +143,11 @@ function ChatViewerWithRef<M extends IdentifiableMessage>(
 
   const handlers = useMemo<ChatViewerHandle<M>>(
     () => ({
-      vListHandle: vListHandle.current,
-      scrollOffset: vListHandle.current?.scrollOffset,
-      scrollSize: vListHandle.current?.scrollSize,
-      viewportSize: vListHandle.current?.viewportSize,
+      virtualizerHandle: virtualizerHandle.current,
+      vListHandle: virtualizerHandle.current,
+      scrollOffset: virtualizerHandle.current?.scrollOffset,
+      scrollSize: virtualizerHandle.current?.scrollSize,
+      viewportSize: virtualizerHandle.current?.viewportSize,
       atTop,
       atBottom,
       idsToIndexes,
@@ -150,13 +157,21 @@ function ChatViewerWithRef<M extends IdentifiableMessage>(
       oldestSeenId,
       oldestSeenIndex,
       get oldestIndexInViewport() {
-        return vListHandle.current?.findStartIndex() ?? IDX_NOT_FOUND;
+        const virtualizer = virtualizerHandle.current;
+        return (
+          virtualizer?.findItemIndex(virtualizer.scrollOffset) ?? IDX_NOT_FOUND
+        );
       },
       get oldestIdInViewport() {
         return indexesToIds.get(this.oldestIndexInViewport);
       },
       get newestIndexInViewport() {
-        return vListHandle.current?.findEndIndex() ?? IDX_NOT_FOUND;
+        const virtualizer = virtualizerHandle.current;
+        return virtualizer
+          ? virtualizer.findItemIndex(
+              virtualizer.scrollOffset + virtualizer.viewportSize,
+            )
+          : IDX_NOT_FOUND;
       },
       get newestIdInViewport() {
         return indexesToIds.get(this.newestIndexInViewport);
@@ -193,7 +208,7 @@ function ChatViewerWithRef<M extends IdentifiableMessage>(
       },
       getIndexOffset(index: number) {
         const idx = normalizeNegativeIndex(index, items.length);
-        return vListHandle.current?.getItemOffset(idx);
+        return virtualizerHandle.current?.getItemOffset(idx);
       },
       getIdOffset(id: MessageId) {
         const index = idsToIndexes.get(id);
@@ -203,7 +218,7 @@ function ChatViewerWithRef<M extends IdentifiableMessage>(
       },
       getIndexSize(index: number) {
         const idx = normalizeNegativeIndex(index, items.length);
-        return vListHandle.current?.getItemSize(idx);
+        return virtualizerHandle.current?.getItemSize(idx);
       },
       getIdSize(id: MessageId) {
         const index = idsToIndexes.get(id);
@@ -212,10 +227,10 @@ function ChatViewerWithRef<M extends IdentifiableMessage>(
         }
       },
       scrollToOffset(offset: number) {
-        vListHandle.current?.scrollTo(offset);
+        virtualizerHandle.current?.scrollTo(offset);
       },
       scrollToIndex(index: number, opts: ScrollToIndexOpts) {
-        vListHandle.current?.scrollToIndex(
+        virtualizerHandle.current?.scrollToIndex(
           normalizeNegativeIndex(index, items.length),
           opts,
         );
@@ -227,7 +242,7 @@ function ChatViewerWithRef<M extends IdentifiableMessage>(
         }
       },
       scrollBy(offset: number) {
-        vListHandle.current?.scrollBy(offset);
+        virtualizerHandle.current?.scrollBy(offset);
       },
       scrollToTop(opts?: ScrollToIndexOpts) {
         this.scrollToIndex(0, opts);
@@ -257,6 +272,12 @@ function ChatViewerWithRef<M extends IdentifiableMessage>(
 
   const vListStyle = useMemo<CSSProperties>(
     () => ({
+      overflowY: 'auto',
+      contain: 'strict',
+      width: '100%',
+      height: '100%',
+      display: 'flex',
+      flexDirection: 'column',
       /*
       overscroll-behavior: contain is needed here to prevent scrolling
       the whole page when the user scrolls to the top or bottom of the chat.
@@ -311,8 +332,8 @@ function ChatViewerWithRef<M extends IdentifiableMessage>(
     (offset: number) => {
       void onScroll?.(offset);
 
-      if (vListHandle.current) {
-        const { viewportSize, scrollSize } = vListHandle.current;
+      if (virtualizerHandle.current) {
+        const { viewportSize, scrollSize } = virtualizerHandle.current;
 
         setAtTop(isAtTop(offset));
         setAtBottom(isAtBottom(offset, scrollSize, viewportSize));
@@ -341,24 +362,27 @@ function ChatViewerWithRef<M extends IdentifiableMessage>(
 
   return (
     <div style={style} className={className}>
-      <VList
-        reverse={reverse}
-        ref={vListHandle}
-        style={vListStyle}
-        shift={shift}
+      <div
         className={scrollerClassName}
-        overscan={overscan}
-        keepMounted={keepMounted}
-        ssrCount={ssrCount}
-        onScroll={handleScroll}
-        onScrollEnd={onScrollEnd}
+        style={vListStyle}
         onWheel={onWheel}
         onKeyDown={onKeyDown}
       >
-        {items.map(({ id, element }) => (
-          <Fragment key={id}>{element}</Fragment>
-        ))}
-      </VList>
+        {reverse ? <div style={{ flexGrow: 1 }} /> : null}
+        <Virtualizer
+          ref={virtualizerHandle}
+          shift={shift}
+          bufferSize={bufferSize ?? overscan}
+          keepMounted={keepMounted}
+          ssrCount={ssrCount}
+          onScroll={handleScroll}
+          onScrollEnd={onScrollEnd}
+        >
+          {items.map(({ id, element }) => (
+            <Fragment key={id}>{element}</Fragment>
+          ))}
+        </Virtualizer>
+      </div>
     </div>
   );
 }
