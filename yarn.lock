@@ -1600,7 +1600,7 @@ __metadata:
     typedoc-plugin-markdown: "npm:^4.7.0"
     typescript: "npm:~5.8.3"
     typescript-eslint: "npm:^8.35.1"
-    virtua: "npm:^0.41.5"
+    virtua: "npm:^0.49.1"
     vite: "npm:^7.0.3"
     vite-plugin-dts: "npm:^4.5.4"
   peerDependencies:
@@ -3635,9 +3635,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"virtua@npm:^0.41.5":
-  version: 0.41.5
-  resolution: "virtua@npm:0.41.5"
+"virtua@npm:^0.49.1":
+  version: 0.49.1
+  resolution: "virtua@npm:0.49.1"
   peerDependencies:
     react: ">=16.14.0"
     react-dom: ">=16.14.0"
@@ -3655,7 +3655,7 @@ __metadata:
       optional: true
     vue:
       optional: true
-  checksum: 10c0/3b1645a91459a5998842601fb747be3ddc69936c0f8d55c457e05bd9a69df3a356e8b482c69f103cfa27e41be09d354a128230bdf63a61c17c31d1624017c24e
+  checksum: 10c0/f03bd7d02c31368b7bbe8ce715e25889f52deefb580cd60aca35abf49ca7fb44dc76cad549e729e7eaa3f62b35c55e0026a23e77da9be7b371ed44e7eb674f00
   languageName: node
   linkType: hard
 
