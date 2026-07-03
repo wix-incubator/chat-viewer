@@ -38,7 +38,7 @@ jobs:
           cache: yarn
 
       - name: 📦 Install Dependencies
-        run: NPQ_PKG_MGR=yarn npx npq install
+        run: MARSHALL_DISABLE_PROVENANCE=1 NPQ_PKG_MGR=yarn npx npq install
 
       - name: 🏗️ Build Website
         run: yarn build:website

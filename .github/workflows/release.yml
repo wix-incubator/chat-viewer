@@ -52,7 +52,7 @@ jobs:
           yarn version "$VERSION" --immediate
 
       - name: Install dependencies
-        run: NPQ_PKG_MGR=yarn npx npq install
+        run: MARSHALL_DISABLE_PROVENANCE=1 NPQ_PKG_MGR=yarn npx npq install
 
       - name: Run linter
         run: yarn lint
