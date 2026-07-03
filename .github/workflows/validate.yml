@@ -24,7 +24,7 @@ jobs:
           cache: yarn
 
       - name: 📦 Install Dependencies
-        run: NPQ_PKG_MGR=yarn npx npq install
+        run: yarn install --immutable
 
       - name: 🔍 Run Linter
         run: yarn lint

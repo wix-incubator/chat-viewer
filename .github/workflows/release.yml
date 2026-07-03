@@ -52,7 +52,7 @@ jobs:
           yarn version "$VERSION" --immediate
 
       - name: Install dependencies
-        run: NPQ_PKG_MGR=yarn npx npq install
+        run: yarn install --immutable
 
       - name: Run linter
         run: yarn lint
