@@ -1587,7 +1587,7 @@ __metadata:
     "@vitejs/plugin-react": "npm:4.6.0"
     eslint: "npm:9.30.1"
     eslint-config-prettier: "npm:9.1.0"
-    eslint-plugin-react-hooks: "npm:7.1.1"
+    eslint-plugin-react-hooks: "npm:7.1.1-canary-f0dfee38-20260529"
     eslint-plugin-react-refresh: "npm:0.4.20"
     glob: "npm:13.0.6"
     globals: "npm:16.3.0"
@@ -1914,9 +1914,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-react-hooks@npm:7.1.1":
-  version: 7.1.1
-  resolution: "eslint-plugin-react-hooks@npm:7.1.1"
+"eslint-plugin-react-hooks@npm:7.1.1-canary-f0dfee38-20260529":
+  version: 7.1.1-canary-f0dfee38-20260529
+  resolution: "eslint-plugin-react-hooks@npm:7.1.1-canary-f0dfee38-20260529"
   dependencies:
     "@babel/core": "npm:^7.24.4"
     "@babel/parser": "npm:^7.24.4"
@@ -1925,7 +1925,7 @@ __metadata:
     zod-validation-error: "npm:^3.5.0 || ^4.0.0"
   peerDependencies:
     eslint: ^3.0.0 || ^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0-0 || ^9.0.0 || ^10.0.0
-  checksum: 10c0/cee8454915d71ac5d70a0d8f4f260e76eaf45fcd4162747dd4282b792ee5616d187351dabe6cdcff9040c79d0cec625635c4fd0777276be119efa88ebe058525
+  checksum: 10c0/562c9f9159eedd0e51cb7052ad8436206c89d9911283ba184325977e58b7b0327feca8dfb0899cefcba5def7f6a1bab4c6e07db95a9330497f0e43eb04915268
   languageName: node
   linkType: hard
 
