@@ -24,7 +24,7 @@ jobs:
           cache: yarn
 
       - name: 📦 Install Dependencies
-        run: MARSHALL_DISABLE_PROVENANCE=1 NPQ_PKG_MGR=yarn npx npq install
+        run: NPQ_PKG_MGR=yarn npx npq install
 
       - name: 🔍 Run Linter
         run: yarn lint
