@@ -13,10 +13,16 @@ export default tseslint.config([
     extends: [
       js.configs.recommended,
       ...tseslint.configs.recommended,
-      reactHooks.configs.recommended,
       reactRefresh.configs.vite,
       prettier,
     ],
+    plugins: {
+      'react-hooks': reactHooks,
+    },
+    rules: {
+      'react-hooks/rules-of-hooks': 'error',
+      'react-hooks/exhaustive-deps': 'warn',
+    },
     languageOptions: {
       ecmaVersion: 2020,
       globals: globals.browser,
