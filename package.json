@@ -46,29 +46,29 @@
     "prepare": "husky"
   },
   "peerDependencies": {
-    "react": "^19.1.0",
-    "react-dom": "^19.1.0"
+    "react": "^19.0.7",
+    "react-dom": "^19.0.7"
   },
   "dependencies": {
-    "virtua": "^0.41.5"
+    "virtua": "0.48.8"
   },
   "devDependencies": {
-    "@faker-js/faker": "^9.9.0",
-    "@types/node": "^24.0.12",
-    "@types/react": "^19.1.8",
-    "@types/react-dom": "^19.1.6",
-    "@vitejs/plugin-react": "^4.6.0",
-    "husky": "^9.1.7",
-    "lint-staged": "^15.2.11",
+    "@faker-js/faker": "9.9.0",
+    "@types/node": "24.0.12",
+    "@types/react": "19.1.8",
+    "@types/react-dom": "19.1.6",
+    "@vitejs/plugin-react": "4.6.0",
+    "husky": "9.1.7",
+    "lint-staged": "15.2.11",
     "oxfmt": "0.53.0",
     "oxlint": "1.68.0",
-    "react": "^19.1.0",
-    "react-dom": "^19.1.0",
-    "typedoc": "^0.28.7",
-    "typedoc-plugin-markdown": "^4.7.0",
-    "typescript": "~5.8.3",
-    "vite": "^7.0.3",
-    "vite-plugin-dts": "^4.5.4"
+    "react": "19.0.7",
+    "react-dom": "19.0.7",
+    "typedoc": "0.28.7",
+    "typedoc-plugin-markdown": "4.7.0",
+    "typescript": "5.8.3",
+    "vite": "7.3.5",
+    "vite-plugin-dts": "4.5.4"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx,json,jsonc,md,html,css,yml,yaml}": [

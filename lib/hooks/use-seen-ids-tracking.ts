@@ -1,12 +1,16 @@
 import { type RefObject, useCallback, useEffect, useState } from 'react';
 
-import type { VListHandle } from 'virtua';
+import type { VirtualizerHandle } from 'virtua';
 
 import { IDX_NOT_FOUND } from '../const';
 import type { MessageId, IdentifiableMessage } from '../types'; // Update import path to reference types directly
 
 interface SeenIdsTrackingDependencies {
-  vListHandle: RefObject<VListHandle | null>;
+  virtualizerHandle: RefObject<VirtualizerHandle | null>;
+  /**
+   * @deprecated Use `virtualizerHandle` instead.
+   */
+  vListHandle?: RefObject<VirtualizerHandle | null>;
   idsToIndexes: Map<MessageId, number>;
   indexesToIds: Map<number, MessageId>;
 }
@@ -15,12 +19,15 @@ export function useSeenIdsTracking<M extends IdentifiableMessage>(
   dependencies: SeenIdsTrackingDependencies,
   messages: M[],
 ) {
-  const { vListHandle, idsToIndexes, indexesToIds } = dependencies;
+  const { virtualizerHandle, idsToIndexes, indexesToIds } = dependencies;
 
   const getViewportInfo = useCallback(() => {
-    const handle = vListHandle.current;
-    const oldestIndexInViewport = handle?.findStartIndex() ?? IDX_NOT_FOUND;
-    const newestIndexInViewport = handle?.findEndIndex() ?? IDX_NOT_FOUND;
+    const handle = virtualizerHandle.current;
+    const oldestIndexInViewport =
+      handle?.findItemIndex(handle.scrollOffset) ?? IDX_NOT_FOUND;
+    const newestIndexInViewport =
+      handle?.findItemIndex(handle.scrollOffset + handle.viewportSize) ??
+      IDX_NOT_FOUND;
     const oldestIdInViewport = indexesToIds.get(oldestIndexInViewport);
     const newestIdInViewport = indexesToIds.get(newestIndexInViewport);
     return {
@@ -29,7 +36,7 @@ export function useSeenIdsTracking<M extends IdentifiableMessage>(
       oldestIdInViewport,
       newestIdInViewport,
     };
-  }, [vListHandle, indexesToIds]);
+  }, [virtualizerHandle, indexesToIds]);
 
   const [newestSeenId, setNewestSeenId] = useState<MessageId<M> | undefined>(
     () => getViewportInfo().newestIdInViewport,
