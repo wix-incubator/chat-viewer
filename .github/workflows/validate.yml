@@ -6,6 +6,9 @@ on:
     branches:
       - master
 
+permissions:
+  contents: read
+
 jobs:
   lint-and-format:
     name: Lint and Format Check
@@ -25,6 +28,8 @@ jobs:
 
       - name: 📦 Install Dependencies
         run: NPQ_PKG_MGR=yarn npx npq install
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
 
       - name: 🔍 Run Linter
         run: yarn lint
