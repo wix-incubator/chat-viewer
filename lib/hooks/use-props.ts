@@ -41,6 +41,7 @@ export function useProps<M extends IdentifiableMessage>(
 
     keepMountedIndexes: props.keepMountedIndexes,
     keepMountedIds: props.keepMountedIds,
+    seenDelayMs: props.seenDelayMs ?? 100,
 
     historyEndOffset: props.historyEndOffset ?? 10,
     onHistoryEndReached: props.onHistoryEndReached ?? (() => {}),

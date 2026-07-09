@@ -21,6 +21,7 @@ import {
 
 import { useProps, useCompareMessages, useSeenIdsTracking } from './hooks';
 import { IDX_NOT_FOUND, PREFIX_ID, SUFFIX_ID } from './const';
+import { isIndexInSeenRanges } from './seen-ranges';
 import type {
   MessageId,
   ChatViewerHandle,
@@ -56,6 +57,7 @@ function ChatViewerWithRef<M extends IdentifiableMessage>(
     bufferSize,
     keepMountedIndexes,
     keepMountedIds,
+    seenDelayMs,
     ssrCount,
     messages,
     renderMessage,
@@ -144,6 +146,7 @@ function ChatViewerWithRef<M extends IdentifiableMessage>(
     newestSeenIndex,
     oldestSeenId,
     oldestSeenIndex,
+    seenRanges,
     trackSeen,
   } = useSeenIdsTracking(
     {
@@ -151,6 +154,7 @@ function ChatViewerWithRef<M extends IdentifiableMessage>(
       vListHandle: virtualizerHandle,
       idsToIndexes,
       indexesToIds,
+      seenDelayMs,
     },
     messages,
   );
@@ -218,13 +222,7 @@ function ChatViewerWithRef<M extends IdentifiableMessage>(
       },
       wasIndexSeen(index: number) {
         const idx = normalizeNegativeIndex(index, items.length);
-        if (
-          this.oldestSeenIndex !== undefined &&
-          this.newestSeenIndex !== undefined
-        ) {
-          return idx >= this.oldestSeenIndex && idx <= this.newestSeenIndex;
-        }
-        return false;
+        return isIndexInSeenRanges(seenRanges, idx);
       },
       wasIdSeen(id: MessageId<M>) {
         const index = idsToIndexes.get(id);
@@ -288,6 +286,7 @@ function ChatViewerWithRef<M extends IdentifiableMessage>(
       newestSeenIndex,
       oldestSeenId,
       oldestSeenIndex,
+      seenRanges,
     ],
   );
 
