@@ -1,18 +1,57 @@
 import type { ReactNode } from 'react';
 
 import type {
+  AffixId,
   ChatViewerHandle,
   IdentifiableMessage,
   MessageId,
   ScrollToItemOpts,
 } from './types';
 
+const VIEWPORT_END_EPSILON = 0.001;
+
 export const normalizeNegativeIndex = (index: number, length: number) => {
   return index < 0 ? length + index : index;
 };
 
+export function getFirstMappedIndexInRange<T>(
+  indexesToValues: Map<number, T>,
+  startIndex: number,
+  endIndex: number,
+): number | undefined {
+  for (let index = startIndex; index <= endIndex; index++) {
+    if (indexesToValues.has(index)) {
+      return index;
+    }
+  }
+}
+
+export function getLastMappedIndexInRange<T>(
+  indexesToValues: Map<number, T>,
+  startIndex: number,
+  endIndex: number,
+): number | undefined {
+  for (let index = endIndex; index >= startIndex; index--) {
+    if (indexesToValues.has(index)) {
+      return index;
+    }
+  }
+}
+
+export const getViewportEndOffset = (
+  scrollOffset: number,
+  viewportSize: number,
+) => {
+  // The viewport end is exclusive. Virtua resolves an exact item boundary to
+  // the following item, so step just inside the viewport before looking it up.
+  return Math.max(
+    scrollOffset,
+    scrollOffset + viewportSize - VIEWPORT_END_EPSILON,
+  );
+};
+
 export const toItem = <M extends IdentifiableMessage>(
-  id: MessageId<M>,
+  id: MessageId<M> | AffixId,
   element: ReactNode,
 ) => ({
   id,

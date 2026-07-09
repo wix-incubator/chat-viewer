@@ -28,7 +28,15 @@ import type {
   ChatViewerProps,
   IdentifiableMessage,
 } from './types';
-import { isAtBottom, isAtTop, normalizeNegativeIndex, toItem } from './utils';
+import {
+  getFirstMappedIndexInRange,
+  getLastMappedIndexInRange,
+  getViewportEndOffset,
+  isAtBottom,
+  isAtTop,
+  normalizeNegativeIndex,
+  toItem,
+} from './utils';
 
 /**
  * ChatViewer component with forwarded ref.
@@ -105,13 +113,19 @@ function ChatViewerWithRef<M extends IdentifiableMessage>(
     [messages, prefixItem, renderMessage, suffixItem],
   );
 
-  const [idsToIndexes, indexesToIds] = useMemo(
-    () => [
-      new Map(items.map((item, index) => [item.id, index])),
-      new Map(items.map((item, index) => [index, item.id])),
-    ],
-    [items],
-  );
+  const [idsToIndexes, indexesToIds] = useMemo<
+    [Map<MessageId<M>, number>, Map<number, MessageId<M>>]
+  >(() => {
+    const prefixOffset = prefixItem ? 1 : 0;
+    return [
+      new Map<MessageId<M>, number>(
+        messages.map((message, index) => [message.id, index + prefixOffset]),
+      ),
+      new Map<number, MessageId<M>>(
+        messages.map((message, index) => [index + prefixOffset, message.id]),
+      ),
+    ];
+  }, [messages, prefixItem]);
 
   const keepMounted = useMemo(() => {
     if (keepMountedIndexes) {
@@ -163,18 +177,31 @@ function ChatViewerWithRef<M extends IdentifiableMessage>(
         );
       },
       get oldestIdInViewport() {
-        return indexesToIds.get(this.oldestIndexInViewport);
+        const index = getFirstMappedIndexInRange(
+          indexesToIds,
+          this.oldestIndexInViewport,
+          this.newestIndexInViewport,
+        );
+        return index === undefined ? undefined : indexesToIds.get(index);
       },
       get newestIndexInViewport() {
         const virtualizer = virtualizerHandle.current;
         return virtualizer
           ? virtualizer.findItemIndex(
-              virtualizer.scrollOffset + virtualizer.viewportSize,
+              getViewportEndOffset(
+                virtualizer.scrollOffset,
+                virtualizer.viewportSize,
+              ),
             )
           : IDX_NOT_FOUND;
       },
       get newestIdInViewport() {
-        return indexesToIds.get(this.newestIndexInViewport);
+        const index = getLastMappedIndexInRange(
+          indexesToIds,
+          this.oldestIndexInViewport,
+          this.newestIndexInViewport,
+        );
+        return index === undefined ? undefined : indexesToIds.get(index);
       },
       isIndexInViewport(index: number) {
         const idx = normalizeNegativeIndex(index, items.length);
@@ -182,7 +209,7 @@ function ChatViewerWithRef<M extends IdentifiableMessage>(
           idx >= this.oldestIndexInViewport && idx <= this.newestIndexInViewport
         );
       },
-      isIdInViewport(id: MessageId) {
+      isIdInViewport(id: MessageId<M>) {
         const index = idsToIndexes.get(id);
         if (index !== undefined) {
           return this.isIndexInViewport(index);
@@ -199,7 +226,7 @@ function ChatViewerWithRef<M extends IdentifiableMessage>(
         }
         return false;
       },
-      wasIdSeen(id: MessageId) {
+      wasIdSeen(id: MessageId<M>) {
         const index = idsToIndexes.get(id);
         if (index !== undefined) {
           return this.wasIndexSeen(index);
@@ -210,7 +237,7 @@ function ChatViewerWithRef<M extends IdentifiableMessage>(
         const idx = normalizeNegativeIndex(index, items.length);
         return virtualizerHandle.current?.getItemOffset(idx);
       },
-      getIdOffset(id: MessageId) {
+      getIdOffset(id: MessageId<M>) {
         const index = idsToIndexes.get(id);
         if (index !== undefined) {
           return this.getIndexOffset(index);
@@ -220,7 +247,7 @@ function ChatViewerWithRef<M extends IdentifiableMessage>(
         const idx = normalizeNegativeIndex(index, items.length);
         return virtualizerHandle.current?.getItemSize(idx);
       },
-      getIdSize(id: MessageId) {
+      getIdSize(id: MessageId<M>) {
         const index = idsToIndexes.get(id);
         if (index !== undefined) {
           return this.getIndexSize(index);
@@ -235,7 +262,7 @@ function ChatViewerWithRef<M extends IdentifiableMessage>(
           opts,
         );
       },
-      scrollToId(id: MessageId, opts: ScrollToIndexOpts) {
+      scrollToId(id: MessageId<M>, opts: ScrollToIndexOpts) {
         const index = idsToIndexes.get(id);
         if (index !== undefined) {
           this.scrollToIndex(index, opts);
