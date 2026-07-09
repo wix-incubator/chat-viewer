@@ -1913,6 +1913,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"bezier-easing@npm:^2.1.0":
+  version: 2.1.0
+  resolution: "bezier-easing@npm:2.1.0"
+  checksum: 10c0/138a160698de3c12501479cc80280d5cc0ab47df73e20d7b5058cba6d62c0876eb97e63aa1e398233269aa2a6bb396fb0ee394da391de7258c9da20729df5158
+  languageName: node
+  linkType: hard
+
 "bidi-js@npm:^1.0.3":
   version: 1.0.3
   resolution: "bidi-js@npm:1.0.3"
@@ -1998,6 +2005,7 @@ __metadata:
     "@vitejs/plugin-react": "npm:4.6.0"
     husky: "npm:9.1.7"
     jsdom: "npm:29.1.1"
+    jsdom-testing-mocks: "npm:1.16.0"
     lint-staged: "npm:15.2.11"
     oxfmt: "npm:0.53.0"
     oxlint: "npm:1.68.0"
@@ -2092,6 +2100,13 @@ __metadata:
     shebang-command: "npm:^2.0.0"
     which: "npm:^2.0.1"
   checksum: 10c0/053ea8b2135caff68a9e81470e845613e374e7309a47731e81639de3eaeb90c3d01af0e0b44d2ab9d50b43467223b88567dfeb3262db942dc063b9976718ffc1
+  languageName: node
+  linkType: hard
+
+"css-mediaquery@npm:^0.1.2":
+  version: 0.1.2
+  resolution: "css-mediaquery@npm:0.1.2"
+  checksum: 10c0/b7825a78f52ce8a8198e004fcad0d7be1d3c9a0463ecd05ba31a0f2c94fb81468ad6f4d7bf715a6ca775696e7a17500c2a339b5216a6d0f789cbf78f9454d048
   languageName: node
   linkType: hard
 
@@ -2624,6 +2639,16 @@ __metadata:
   version: 4.0.0
   resolution: "js-tokens@npm:4.0.0"
   checksum: 10c0/e248708d377aa058eacf2037b07ded847790e6de892bbad3dac0abba2e759cb9f121b00099a65195616badcb6eca8d14d975cb3e89eb1cfda644756402c8aeed
+  languageName: node
+  linkType: hard
+
+"jsdom-testing-mocks@npm:1.16.0":
+  version: 1.16.0
+  resolution: "jsdom-testing-mocks@npm:1.16.0"
+  dependencies:
+    bezier-easing: "npm:^2.1.0"
+    css-mediaquery: "npm:^0.1.2"
+  checksum: 10c0/68e07480c685cc6297d808fb6cdf21d249be4ebc942530ddb6f2a0ff2fce63d1b98a0e3b8f4cfc978919adc9ecfe3f9f192ff92ba77a6283dcff743d47c49afb
   languageName: node
   linkType: hard
 

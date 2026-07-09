@@ -1,87 +1,14 @@
-import { type ReactNode, createRef } from 'react';
-import { act, render, screen, waitFor } from '@testing-library/react';
+import { act, screen, waitFor } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 
 import {
-  ChatViewer,
-  type ChatViewerHandle,
-  type ChatViewerProps,
-} from '../lib';
-
-type TestMessage = {
-  id: string;
-  role: 'user' | 'assistant';
-  content: string;
-};
-
-const VIEWPORT_HEIGHT = 120;
-const MESSAGE_HEIGHT = 32;
-
-function makeMessages(count: number, start = 0): TestMessage[] {
-  return Array.from({ length: count }, (_, index) => {
-    const id = `message-${start + index}`;
-
-    return {
-      id,
-      role: index % 2 === 0 ? 'user' : 'assistant',
-      content: `Message ${start + index}`,
-    };
-  });
-}
-
-function MessageView({ message }: { message: TestMessage }) {
-  return (
-    <div
-      data-testid="message"
-      data-message-id={message.id}
-      style={{ height: MESSAGE_HEIGHT }}
-    >
-      {message.content}
-    </div>
-  );
-}
-
-function renderChat(
-  props: Partial<ChatViewerProps<TestMessage>> & {
-    messages: TestMessage[];
-  },
-) {
-  const ref = createRef<ChatViewerHandle<TestMessage>>();
-  const baseProps: ChatViewerProps<TestMessage> = {
-    alignment: 'top',
-    bufferSize: 0,
-    style: { width: 320, height: VIEWPORT_HEIGHT },
-    scrollerStyle: { width: 320, height: VIEWPORT_HEIGHT },
-    renderMessage: message => <MessageView message={message} />,
-    ...props,
-  };
-  const view = render(<ChatViewer<TestMessage> ref={ref} {...baseProps} />);
-
-  const rerender = (nextProps: Partial<ChatViewerProps<TestMessage>>) => {
-    Object.assign(baseProps, nextProps);
-    view.rerender(<ChatViewer<TestMessage> ref={ref} {...baseProps} />);
-  };
-
-  return { host: view.container, ref, rerender };
-}
-
-function renderedMessageIds(host: HTMLElement) {
-  return Array.from(
-    host.querySelectorAll<HTMLElement>('[data-message-id]'),
-  ).map(element => element.dataset.messageId);
-}
-
-async function nextFrame() {
-  await act(async () => {
-    await new Promise(resolve => requestAnimationFrame(resolve));
-  });
-}
-
-async function flushFrames(count = 3) {
-  for (let index = 0; index < count; index++) {
-    await nextFrame();
-  }
-}
+  type ReactNode,
+  VIEWPORT_HEIGHT,
+  flushFrames,
+  makeMessages,
+  renderedMessageIds,
+  renderChat,
+} from './utils/test-utils';
 
 describe('ChatViewer', () => {
   it('renders chat messages and affixes', async () => {
@@ -96,6 +23,7 @@ describe('ChatViewer', () => {
       onSuffixDisplay,
       prefix,
       suffix,
+      style: { width: 320, height: 120 },
     });
 
     await flushFrames();

@@ -1,49 +1,16 @@
-import { describe, expect, it, vi } from 'vitest';
+import { describe, expect, it } from 'vitest';
 
 import {
-  type ChatViewerHandle,
   followEveryMessage,
   followMessagesAtBottom,
   followMessagesBy,
 } from '../lib';
-
-type TestMessage = {
-  id: string;
-  role: 'user' | 'assistant';
-};
-
-function makeMessage(role: TestMessage['role']): TestMessage {
-  return { id: `${role}-message`, role };
-}
-
-function createChatHandle(atBottom: boolean): ChatViewerHandle<TestMessage> & {
-  scrollToBottom: ReturnType<typeof vi.fn>;
-} {
-  const handle: Partial<ChatViewerHandle<TestMessage>> = {
-    atBottom,
-    scrollOffset: atBottom ? 900 : 0,
-    scrollSize: 1000,
-    viewportSize: 100,
-  };
-
-  handle.scrollToBottom = vi.fn(() => {
-    handle.scrollOffset = 900;
-  });
-
-  return handle as ChatViewerHandle<TestMessage> & {
-    scrollToBottom: ReturnType<typeof vi.fn>;
-  };
-}
-
-async function nextFrame() {
-  await new Promise(resolve => requestAnimationFrame(resolve));
-}
-
-async function flushFrames(count = 2) {
-  for (let index = 0; index < count; index++) {
-    await nextFrame();
-  }
-}
+import {
+  type TestMessage,
+  createChatHandle,
+  flushFrames,
+  makeMessage,
+} from './utils/test-utils';
 
 describe('follow strategies', () => {
   it('follows every appended message', async () => {
