@@ -3,6 +3,12 @@ name: Release
 on:
   release:
     types: [published]
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'SemVer version to publish: optional leading v, MAJOR.MINOR.PATCH with optional prerelease/build metadata, for example 0.2.1, v0.2.1, or 0.2.1-beta.1'
+        required: true
+        type: string
 
 permissions:
   contents: read
@@ -16,10 +22,18 @@ jobs:
       HUSKY: 0
 
     steps:
+      - name: Verify release branch
+        if: github.event_name == 'workflow_dispatch'
+        run: |
+          if [ "${GITHUB_REF}" != "refs/heads/master" ]; then
+            echo "Release workflow must be run from master." >&2
+            exit 1
+          fi
+
       - name: Checkout
         uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
         with:
-          ref: ${{ github.event.release.tag_name }}
+          ref: ${{ github.event_name == 'release' && github.event.release.tag_name || github.ref }}
 
       - name: Enable Corepack
         run: corepack enable
@@ -33,12 +47,12 @@ jobs:
 
       - name: Set release version
         env:
-          RELEASE_TAG: ${{ github.event.release.tag_name }}
+          RELEASE_VERSION: ${{ github.event_name == 'workflow_dispatch' && inputs.version || github.event.release.tag_name }}
         run: |
-          VERSION="${RELEASE_TAG#v}"
+          VERSION="${RELEASE_VERSION#v}"
 
           if ! [[ "$VERSION" =~ ^[0-9]+\.[0-9]+\.[0-9]+(-[0-9A-Za-z.-]+)?(\+[0-9A-Za-z.-]+)?$ ]]; then
-            echo "Release tag must be v-prefixed or exact semver, for example v0.1.6." >&2
+            echo "Release version must be v-prefixed or exact semver, for example v0.2.1 or 0.2.1." >&2
             exit 1
           fi
 
