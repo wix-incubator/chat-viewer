@@ -1,5 +1,5 @@
 import { createElement, type ReactNode, createRef } from 'react';
-import { act, render } from '@testing-library/react';
+import { render, type RenderResult } from 'vitest-browser-react';
 import { vi } from 'vitest';
 
 import {
@@ -7,9 +7,7 @@ import {
   type ChatViewerHandle,
   type ChatViewerProps,
 } from '../../lib';
-import { measureElement } from './dom-utils';
 import { MessageView } from './message-view';
-import { getResizeObserverMock } from './resize-observer-mock';
 
 export type TestMessage = {
   id: string;
@@ -35,7 +33,7 @@ export function makeMessage(role: TestMessage['role']): TestMessage {
   return { id: `${role}-message`, role, content: `${role} message` };
 }
 
-export function renderChat(
+export async function renderChat(
   props: Partial<ChatViewerProps<TestMessage>> & {
     messages: TestMessage[];
   },
@@ -49,20 +47,21 @@ export function renderChat(
     renderMessage: message => createElement(MessageView, { message }),
     ...props,
   };
-  const view = render(
+  const view = await render(
     createElement(ChatViewer<TestMessage>, { ref, ...baseProps }),
   );
-  resizeObservedElements();
 
-  const rerender = (nextProps: Partial<ChatViewerProps<TestMessage>>) => {
+  const rerender = async (nextProps: Partial<ChatViewerProps<TestMessage>>) => {
     Object.assign(baseProps, nextProps);
-    view.rerender(
+    await view.rerender(
       createElement(ChatViewer<TestMessage>, { ref, ...baseProps }),
     );
-    resizeObservedElements();
+    await flushFrames();
   };
 
-  return { host: view.container, ref, rerender };
+  await flushFrames();
+
+  return { host: view.container, ref, rerender, view };
 }
 
 export function renderedMessageIds(host: HTMLElement) {
@@ -92,29 +91,10 @@ export function createChatHandle(
   };
 }
 
-function resizeObservedElements() {
-  const resizeObserver = getResizeObserverMock();
-  const elements = resizeObserver.getObservedElements();
-
-  for (const element of elements) {
-    const { width, height } = measureElement(element);
-
-    resizeObserver.mockElementSize(element, {
-      contentBoxSize: { inlineSize: width, blockSize: height },
-    });
-  }
-
-  resizeObserver.resize(elements);
-}
-
 async function nextFrame() {
-  resizeObservedElements();
-
-  await act(async () => {
-    await new Promise(resolve => requestAnimationFrame(resolve));
+  await new Promise<void>(resolve => {
+    requestAnimationFrame(() => resolve());
   });
-
-  resizeObservedElements();
 }
 
 export async function flushFrames(count = 3) {
@@ -123,4 +103,4 @@ export async function flushFrames(count = 3) {
   }
 }
 
-export { type ReactNode };
+export { type ReactNode, type RenderResult };
