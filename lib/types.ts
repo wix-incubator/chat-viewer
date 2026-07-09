@@ -45,11 +45,10 @@ export type ChatAlignment = 'top' | 'bottom';
 export type IdentifiableMessage = { id: string | number };
 
 /**
- * MessageId type that can be either a message ID or an affix ID ({@link AffixId} or {@link SuffixId}).
+ * MessageId type for IDs from the `messages` array.
  */
 export type MessageId<M extends IdentifiableMessage = IdentifiableMessage> =
-  | M['id']
-  | AffixId;
+  M['id'];
 
 /**
  * General callback that receives a {@link ChatViewerHandle} instance.
@@ -319,7 +318,7 @@ export interface ChatViewerHandle<
    */
   idsToIndexes: Map<MessageId<M>, number>;
   /**
-   * Map of indexes to their corresponding {@link MessageId} in the list.
+   * Map of indexes to their corresponding message IDs.
    */
   indexesToIds: Map<number, MessageId<M>>;
   /**
@@ -335,35 +334,35 @@ export interface ChatViewerHandle<
    */
   viewportSize: number | undefined;
   /**
-   * The {@link MessageId} of the newest message that is present in the viewport, or undefined if not available.
+   * The {@link MessageId} of the newest message that has been seen, excluding prefix and suffix affixes.
    */
   newestSeenId: MessageId<M> | undefined;
   /**
-   * The index of the newest message that is present in the viewport, or undefined if not available.
+   * The index of the newest message that has been seen, excluding prefix and suffix affixes.
    */
   newestSeenIndex: number | undefined;
   /**
-   * The {@link MessageId} of the oldest message that has been seen (was at least once within the viewport), or undefined if not available.
+   * The {@link MessageId} of the oldest message that has been seen, excluding prefix and suffix affixes.
    */
   oldestSeenId: MessageId<M> | undefined;
   /**
-   * The index of the oldest message that has been seen (was at least once within the viewport), or undefined if not available.
+   * The index of the oldest message that has been seen, excluding prefix and suffix affixes.
    */
   oldestSeenIndex: number | undefined;
   /**
-   * The index of the oldest message currently visible in the viewport.
+   * The index of the oldest item currently visible in the viewport.
    */
   oldestIndexInViewport: number;
   /**
-   * The {@link MessageId} of the oldest message currently visible in the viewport, or undefined if not available.
+   * The {@link MessageId} of the oldest message currently visible in the viewport, excluding prefix and suffix affixes.
    */
   oldestIdInViewport: MessageId<M> | undefined;
   /**
-   * The index of the newest message currently visible in the viewport.
+   * The index of the newest item currently visible in the viewport.
    */
   newestIndexInViewport: number;
   /**
-   * The {@link MessageId} of the newest message currently visible in the viewport, or undefined if not available.
+   * The {@link MessageId} of the newest message currently visible in the viewport, excluding prefix and suffix affixes.
    */
   newestIdInViewport: MessageId<M> | undefined;
 
@@ -420,7 +419,7 @@ export interface ChatViewerHandle<
   scrollToIndex(index: number, opts?: ScrollToItemOpts): void;
   /**
    * Scrolls to the item with the specified message ID.
-   * @param id - The message ID to scroll to.
+   * @param id - The {@link MessageId} to scroll to.
    * @param opts - Optional scroll options.
    */
   scrollToId(id: MessageId<M>, opts?: ScrollToItemOpts): void;

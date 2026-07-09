@@ -3,20 +3,25 @@ import { type RefObject, useCallback, useEffect, useState } from 'react';
 import type { VirtualizerHandle } from 'virtua';
 
 import { IDX_NOT_FOUND } from '../const';
-import type { MessageId, IdentifiableMessage } from '../types'; // Update import path to reference types directly
+import type { IdentifiableMessage, MessageId } from '../types';
+import {
+  getFirstMappedIndexInRange,
+  getLastMappedIndexInRange,
+  getViewportEndOffset,
+} from '../utils';
 
-interface SeenIdsTrackingDependencies {
+interface SeenIdsTrackingDependencies<M extends IdentifiableMessage> {
   virtualizerHandle: RefObject<VirtualizerHandle | null>;
   /**
    * @deprecated Use `virtualizerHandle` instead.
    */
   vListHandle?: RefObject<VirtualizerHandle | null>;
-  idsToIndexes: Map<MessageId, number>;
-  indexesToIds: Map<number, MessageId>;
+  idsToIndexes: Map<MessageId<M>, number>;
+  indexesToIds: Map<number, MessageId<M>>;
 }
 
 export function useSeenIdsTracking<M extends IdentifiableMessage>(
-  dependencies: SeenIdsTrackingDependencies,
+  dependencies: SeenIdsTrackingDependencies<M>,
   messages: M[],
 ) {
   const { virtualizerHandle, idsToIndexes, indexesToIds } = dependencies;
@@ -26,13 +31,32 @@ export function useSeenIdsTracking<M extends IdentifiableMessage>(
     const oldestIndexInViewport =
       handle?.findItemIndex(handle.scrollOffset) ?? IDX_NOT_FOUND;
     const newestIndexInViewport =
-      handle?.findItemIndex(handle.scrollOffset + handle.viewportSize) ??
-      IDX_NOT_FOUND;
-    const oldestIdInViewport = indexesToIds.get(oldestIndexInViewport);
-    const newestIdInViewport = indexesToIds.get(newestIndexInViewport);
+      handle?.findItemIndex(
+        getViewportEndOffset(handle.scrollOffset, handle.viewportSize),
+      ) ?? IDX_NOT_FOUND;
+    const oldestMessageIndexInViewport = getFirstMappedIndexInRange(
+      indexesToIds,
+      oldestIndexInViewport,
+      newestIndexInViewport,
+    );
+    const newestMessageIndexInViewport = getLastMappedIndexInRange(
+      indexesToIds,
+      oldestIndexInViewport,
+      newestIndexInViewport,
+    );
+    const oldestIdInViewport =
+      oldestMessageIndexInViewport === undefined
+        ? undefined
+        : indexesToIds.get(oldestMessageIndexInViewport);
+    const newestIdInViewport =
+      newestMessageIndexInViewport === undefined
+        ? undefined
+        : indexesToIds.get(newestMessageIndexInViewport);
     return {
       oldestIndexInViewport,
       newestIndexInViewport,
+      oldestMessageIndexInViewport,
+      newestMessageIndexInViewport,
       oldestIdInViewport,
       newestIdInViewport,
     };
@@ -46,18 +70,22 @@ export function useSeenIdsTracking<M extends IdentifiableMessage>(
   );
 
   const trackNewestSeen = useCallback(() => {
-    const { newestIdInViewport, newestIndexInViewport } = getViewportInfo();
+    const { newestIdInViewport, newestMessageIndexInViewport } =
+      getViewportInfo();
     const currentNewestSeenIndex =
-      idsToIndexes.get(newestSeenId ?? -1) ?? IDX_NOT_FOUND;
+      newestSeenId === undefined
+        ? IDX_NOT_FOUND
+        : (idsToIndexes.get(newestSeenId) ?? IDX_NOT_FOUND);
 
     const isNewestInViewportValid =
       newestIdInViewport !== undefined &&
-      newestIndexInViewport !== IDX_NOT_FOUND;
+      newestMessageIndexInViewport !== undefined;
     const isCurrentNewestSeenIndexInvalid =
       currentNewestSeenIndex === IDX_NOT_FOUND;
     const isNewerThanCurrentSeen =
       currentNewestSeenIndex !== IDX_NOT_FOUND &&
-      newestIndexInViewport > currentNewestSeenIndex;
+      newestMessageIndexInViewport !== undefined &&
+      newestMessageIndexInViewport > currentNewestSeenIndex;
 
     const shouldUpdateNewestSeen =
       isNewestInViewportValid &&
@@ -69,18 +97,22 @@ export function useSeenIdsTracking<M extends IdentifiableMessage>(
   }, [getViewportInfo, idsToIndexes, newestSeenId]);
 
   const trackOldestSeen = useCallback(() => {
-    const { oldestIdInViewport, oldestIndexInViewport } = getViewportInfo();
+    const { oldestIdInViewport, oldestMessageIndexInViewport } =
+      getViewportInfo();
     const currentOldestSeenIndex =
-      idsToIndexes.get(oldestSeenId ?? -1) ?? IDX_NOT_FOUND;
+      oldestSeenId === undefined
+        ? IDX_NOT_FOUND
+        : (idsToIndexes.get(oldestSeenId) ?? IDX_NOT_FOUND);
 
     const isOldestInViewportValid =
       oldestIdInViewport !== undefined &&
-      oldestIndexInViewport !== IDX_NOT_FOUND;
+      oldestMessageIndexInViewport !== undefined;
     const isCurrentOldestSeenIndexInvalid =
       currentOldestSeenIndex === IDX_NOT_FOUND;
     const isOlderThanCurrentSeen =
       currentOldestSeenIndex !== IDX_NOT_FOUND &&
-      oldestIndexInViewport < currentOldestSeenIndex;
+      oldestMessageIndexInViewport !== undefined &&
+      oldestMessageIndexInViewport < currentOldestSeenIndex;
 
     const shouldUpdateOldestSeen =
       isOldestInViewportValid &&
@@ -112,8 +144,10 @@ export function useSeenIdsTracking<M extends IdentifiableMessage>(
   return {
     newestSeenId,
     oldestSeenId,
-    newestSeenIndex: newestSeenId ? idsToIndexes.get(newestSeenId) : undefined,
-    oldestSeenIndex: oldestSeenId ? idsToIndexes.get(oldestSeenId) : undefined,
+    newestSeenIndex:
+      newestSeenId === undefined ? undefined : idsToIndexes.get(newestSeenId),
+    oldestSeenIndex:
+      oldestSeenId === undefined ? undefined : idsToIndexes.get(oldestSeenId),
     trackSeen,
   };
 }
