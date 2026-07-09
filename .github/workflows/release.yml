@@ -1,12 +1,8 @@
 name: Release
 
 on:
-  workflow_dispatch:
-    inputs:
-      version:
-        description: 'Exact version to publish, for example 0.1.6'
-        required: true
-        type: string
+  release:
+    types: [published]
 
 permissions:
   contents: read
@@ -20,15 +16,10 @@ jobs:
       HUSKY: 0
 
     steps:
-      - name: Verify release branch
-        run: |
-          if [ "${GITHUB_REF}" != "refs/heads/master" ]; then
-            echo "Release workflow must be run from master." >&2
-            exit 1
-          fi
-
       - name: Checkout
         uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
+        with:
+          ref: ${{ github.event.release.tag_name }}
 
       - name: Enable Corepack
         run: corepack enable
@@ -42,10 +33,12 @@ jobs:
 
       - name: Set release version
         env:
-          VERSION: ${{ inputs.version }}
+          RELEASE_TAG: ${{ github.event.release.tag_name }}
         run: |
+          VERSION="${RELEASE_TAG#v}"
+
           if ! [[ "$VERSION" =~ ^[0-9]+\.[0-9]+\.[0-9]+(-[0-9A-Za-z.-]+)?(\+[0-9A-Za-z.-]+)?$ ]]; then
-            echo "Version must be an exact semver value, for example 0.1.6." >&2
+            echo "Release tag must be v-prefixed or exact semver, for example v0.1.6." >&2
             exit 1
           fi
 
@@ -53,6 +46,8 @@ jobs:
 
       - name: Install dependencies
         run: NPQ_PKG_MGR=yarn npx npq install
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
 
       - name: Run linter
         run: yarn lint
