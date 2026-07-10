@@ -1,3 +1,4 @@
+import { screen, waitFor } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 
 import {
@@ -15,7 +16,7 @@ describe('ChatViewer', () => {
     const onSuffixDisplay = vi.fn();
     const prefix: ReactNode = <div data-testid="prefix">Loading history</div>;
     const suffix: ReactNode = <div data-testid="suffix">Assistant typing</div>;
-    const { view } = await renderChat({
+    await renderChat({
       bufferSize: VIEWPORT_HEIGHT,
       messages: makeMessages(3),
       onPrefixDisplay,
@@ -25,35 +26,37 @@ describe('ChatViewer', () => {
       style: { width: 320, height: 120 },
     });
 
-    await expect.element(view.getByText('Message 0')).toBeVisible();
-    await expect.element(view.getByText('Message 1')).toBeVisible();
-    await expect.element(view.getByText('Message 2')).toBeVisible();
-    await expect.element(view.getByText('Loading history')).toBeVisible();
-    await expect.element(view.getByText('Assistant typing')).toBeVisible();
+    expect(screen.getByText('Message 0')).not.toBeNull();
+    expect(screen.getByText('Message 1')).not.toBeNull();
+    expect(screen.getByText('Message 2')).not.toBeNull();
+    expect(screen.getByText('Loading history')).not.toBeNull();
+    expect(screen.getByText('Assistant typing')).not.toBeNull();
     expect(onPrefixDisplay).toHaveBeenLastCalledWith(expect.anything(), true);
     expect(onSuffixDisplay).toHaveBeenLastCalledWith(expect.anything(), true);
   });
 
   it('virtualizes large message lists', async () => {
     const messages = makeMessages(100);
-    const { host } = await renderChat({ messages });
+    await renderChat({ messages });
 
     await flushFrames();
 
-    const renderedIds = renderedMessageIds(host);
+    const renderedIds = renderedMessageIds();
 
     expect(renderedIds.length).toBeGreaterThan(0);
     expect(renderedIds.length).toBeLessThan(messages.length);
   });
 
   it('scrolls to messages by id', async () => {
-    const { host, ref } = await renderChat({ messages: makeMessages(100) });
+    const { ref } = await renderChat({ messages: makeMessages(100) });
 
     await flushFrames();
 
     ref.current?.scrollToId('message-80', { align: 'start' });
 
-    await expect.poll(() => renderedMessageIds(host)).toContain('message-80');
+    await waitFor(() => {
+      expect(renderedMessageIds()).toContain('message-80');
+    });
   });
 
   it('reports prepended and appended message batches', async () => {

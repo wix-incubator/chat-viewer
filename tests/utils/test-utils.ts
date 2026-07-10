@@ -1,13 +1,15 @@
 import { createElement, type ReactNode, createRef } from 'react';
-import { render, type RenderResult } from 'vitest-browser-react';
 import { vi } from 'vitest';
+import { render, screen } from '@testing-library/react';
 
 import {
   ChatViewer,
   type ChatViewerHandle,
   type ChatViewerProps,
 } from '../../lib';
+import { measureElement } from './dom-utils';
 import { MessageView } from './message-view';
+import { getResizeObserver } from './resize-observer';
 
 export type TestMessage = {
   id: string;
@@ -47,27 +49,29 @@ export async function renderChat(
     renderMessage: message => createElement(MessageView, { message }),
     ...props,
   };
-  const view = await render(
+  const view = render(
     createElement(ChatViewer<TestMessage>, { ref, ...baseProps }),
   );
+  resizeObservedElements();
 
   const rerender = async (nextProps: Partial<ChatViewerProps<TestMessage>>) => {
     Object.assign(baseProps, nextProps);
-    await view.rerender(
+    view.rerender(
       createElement(ChatViewer<TestMessage>, { ref, ...baseProps }),
     );
+    resizeObservedElements();
     await flushFrames();
   };
 
   await flushFrames();
 
-  return { host: view.container, ref, rerender, view };
+  return { ref, rerender };
 }
 
-export function renderedMessageIds(host: HTMLElement) {
-  return Array.from(
-    host.querySelectorAll<HTMLElement>('[data-message-id]'),
-  ).map(element => element.dataset.messageId);
+export function renderedMessageIds() {
+  return screen
+    .queryAllByTestId('message')
+    .map(element => element.dataset.messageId);
 }
 
 export function createChatHandle(
@@ -92,9 +96,13 @@ export function createChatHandle(
 }
 
 async function nextFrame() {
+  resizeObservedElements();
+
   await new Promise<void>(resolve => {
     requestAnimationFrame(() => resolve());
   });
+
+  resizeObservedElements();
 }
 
 export async function flushFrames(count = 3) {
@@ -103,4 +111,19 @@ export async function flushFrames(count = 3) {
   }
 }
 
-export { type ReactNode, type RenderResult };
+function resizeObservedElements() {
+  const resizeObserver = getResizeObserver();
+  const elements = resizeObserver.getObservedElements();
+
+  for (const element of elements) {
+    const { width, height } = measureElement(element);
+
+    resizeObserver.mockElementSize(element, {
+      contentBoxSize: { inlineSize: width, blockSize: height },
+    });
+  }
+
+  resizeObserver.resize(elements);
+}
+
+export { type ReactNode };

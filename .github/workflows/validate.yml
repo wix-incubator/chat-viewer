@@ -31,9 +31,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ github.token }}
 
-      - name: 🎭 Install Chromium
-        run: npx --no playwright install --with-deps --only-shell chromium
-
       - name: 🔍 Run Linter
         run: yarn lint
 

@@ -55,16 +55,18 @@
   },
   "devDependencies": {
     "@faker-js/faker": "9.9.0",
+    "@testing-library/dom": "10.4.0",
+    "@testing-library/react": "16.3.2",
     "@types/node": "24.0.12",
     "@types/react": "19.1.8",
     "@types/react-dom": "19.1.6",
     "@vitejs/plugin-react": "4.6.0",
-    "@vitest/browser-playwright": "4.1.9",
     "husky": "9.1.7",
+    "jsdom": "29.1.1",
+    "jsdom-testing-mocks": "1.16.0",
     "lint-staged": "15.2.11",
     "oxfmt": "0.53.0",
     "oxlint": "1.68.0",
-    "playwright": "1.59.0",
     "react": "19.0.7",
     "react-dom": "19.0.7",
     "typedoc": "0.28.7",
@@ -72,8 +74,7 @@
     "typescript": "5.8.3",
     "vite": "7.3.5",
     "vite-plugin-dts": "4.5.4",
-    "vitest": "4.1.9",
-    "vitest-browser-react": "2.2.0"
+    "vitest": "4.1.9"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx,json,jsonc,md,html,css,yml,yaml}": [
