@@ -156,6 +156,12 @@ export interface ChatViewerProps<
    * {@link MessageId}s of messages to keep mounted even when out of view.
    */
   keepMountedIds?: MessageId<M>[];
+  /**
+   * Time in milliseconds that a message must remain visible before it is marked as seen.
+   *
+   * @defaultValue 100
+   */
+  seenDelayMs?: number;
 
   /**
    * The array of messages to display in the chat viewer.

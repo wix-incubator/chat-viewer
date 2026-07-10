@@ -1,8 +1,21 @@
-import { type RefObject, useCallback, useEffect, useState } from 'react';
+import {
+  type RefObject,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 
 import type { VirtualizerHandle } from 'virtua';
 
 import { IDX_NOT_FOUND } from '../const';
+import {
+  getSeenRangeBounds,
+  isRangeInSeenRanges,
+  mergeSeenRange,
+  type SeenRange,
+} from '../seen-ranges';
 import type { IdentifiableMessage, MessageId } from '../types';
 import {
   getFirstMappedIndexInRange,
@@ -18,13 +31,55 @@ interface SeenIdsTrackingDependencies<M extends IdentifiableMessage> {
   vListHandle?: RefObject<VirtualizerHandle | null>;
   idsToIndexes: Map<MessageId<M>, number>;
   indexesToIds: Map<number, MessageId<M>>;
+  seenDelayMs: number;
 }
+
+interface ViewportSeenRange<M extends IdentifiableMessage> {
+  ids: readonly [MessageId<M>, MessageId<M>];
+  indexes: SeenRange;
+}
+
+type SeenIdRange<M extends IdentifiableMessage> = readonly [
+  MessageId<M>,
+  MessageId<M>,
+];
+
+const isViewportSeenRangeEqual = <M extends IdentifiableMessage>(
+  first: ViewportSeenRange<M>,
+  second: ViewportSeenRange<M>,
+) =>
+  first.ids[0] === second.ids[0] &&
+  first.ids[1] === second.ids[1] &&
+  first.indexes[0] === second.indexes[0] &&
+  first.indexes[1] === second.indexes[1];
+
+const resolveSeenIdRanges = <M extends IdentifiableMessage>(
+  ranges: readonly SeenIdRange<M>[],
+  idsToIndexes: Map<MessageId<M>, number>,
+) =>
+  ranges.reduce<SeenRange[]>((seenRanges, [oldestId, newestId]) => {
+    const oldestIndex = idsToIndexes.get(oldestId);
+    const newestIndex = idsToIndexes.get(newestId);
+
+    if (oldestIndex === undefined || newestIndex === undefined) {
+      return seenRanges;
+    }
+
+    return mergeSeenRange(seenRanges, [oldestIndex, newestIndex]);
+  }, []);
 
 export function useSeenIdsTracking<M extends IdentifiableMessage>(
   dependencies: SeenIdsTrackingDependencies<M>,
   messages: M[],
 ) {
-  const { virtualizerHandle, idsToIndexes, indexesToIds } = dependencies;
+  const { virtualizerHandle, idsToIndexes, indexesToIds, seenDelayMs } =
+    dependencies;
+  const pendingSeenRangeRef = useRef<ViewportSeenRange<M> | undefined>(
+    undefined,
+  );
+  const pendingSeenTimerRef = useRef<ReturnType<typeof setTimeout> | undefined>(
+    undefined,
+  );
 
   const getViewportInfo = useCallback(() => {
     const handle = virtualizerHandle.current;
@@ -62,92 +117,138 @@ export function useSeenIdsTracking<M extends IdentifiableMessage>(
     };
   }, [virtualizerHandle, indexesToIds]);
 
-  const [newestSeenId, setNewestSeenId] = useState<MessageId<M> | undefined>(
-    () => getViewportInfo().newestIdInViewport,
+  const [seenIdRanges, setSeenIdRanges] = useState<SeenIdRange<M>[]>([]);
+
+  const seenRanges = useMemo(
+    () => resolveSeenIdRanges(seenIdRanges, idsToIndexes),
+    [idsToIndexes, seenIdRanges],
   );
-  const [oldestSeenId, setOldestSeenId] = useState<MessageId<M> | undefined>(
-    () => getViewportInfo().oldestIdInViewport,
+  const seenRangeBounds = useMemo(
+    () => getSeenRangeBounds(seenRanges),
+    [seenRanges],
   );
+  const oldestSeenIndex = seenRangeBounds?.oldest;
+  const newestSeenIndex = seenRangeBounds?.newest;
+  const oldestSeenId =
+    oldestSeenIndex === undefined
+      ? undefined
+      : indexesToIds.get(oldestSeenIndex);
+  const newestSeenId =
+    newestSeenIndex === undefined
+      ? undefined
+      : indexesToIds.get(newestSeenIndex);
 
-  const trackNewestSeen = useCallback(() => {
-    const { newestIdInViewport, newestMessageIndexInViewport } =
-      getViewportInfo();
-    const currentNewestSeenIndex =
-      newestSeenId === undefined
-        ? IDX_NOT_FOUND
-        : (idsToIndexes.get(newestSeenId) ?? IDX_NOT_FOUND);
+  const getViewportSeenRange = useCallback(():
+    | ViewportSeenRange<M>
+    | undefined => {
+    const {
+      oldestMessageIndexInViewport,
+      newestMessageIndexInViewport,
+      oldestIdInViewport,
+      newestIdInViewport,
+    } = getViewportInfo();
 
-    const isNewestInViewportValid =
-      newestIdInViewport !== undefined &&
-      newestMessageIndexInViewport !== undefined;
-    const isCurrentNewestSeenIndexInvalid =
-      currentNewestSeenIndex === IDX_NOT_FOUND;
-    const isNewerThanCurrentSeen =
-      currentNewestSeenIndex !== IDX_NOT_FOUND &&
-      newestMessageIndexInViewport !== undefined &&
-      newestMessageIndexInViewport > currentNewestSeenIndex;
-
-    const shouldUpdateNewestSeen =
-      isNewestInViewportValid &&
-      (isCurrentNewestSeenIndexInvalid || isNewerThanCurrentSeen);
-
-    if (shouldUpdateNewestSeen) {
-      setNewestSeenId(newestIdInViewport);
+    if (
+      oldestMessageIndexInViewport === undefined ||
+      newestMessageIndexInViewport === undefined ||
+      oldestIdInViewport === undefined ||
+      newestIdInViewport === undefined
+    ) {
+      return undefined;
     }
-  }, [getViewportInfo, idsToIndexes, newestSeenId]);
 
-  const trackOldestSeen = useCallback(() => {
-    const { oldestIdInViewport, oldestMessageIndexInViewport } =
-      getViewportInfo();
-    const currentOldestSeenIndex =
-      oldestSeenId === undefined
-        ? IDX_NOT_FOUND
-        : (idsToIndexes.get(oldestSeenId) ?? IDX_NOT_FOUND);
+    return {
+      ids: [oldestIdInViewport, newestIdInViewport],
+      indexes: [oldestMessageIndexInViewport, newestMessageIndexInViewport],
+    };
+  }, [getViewportInfo]);
 
-    const isOldestInViewportValid =
-      oldestIdInViewport !== undefined &&
-      oldestMessageIndexInViewport !== undefined;
-    const isCurrentOldestSeenIndexInvalid =
-      currentOldestSeenIndex === IDX_NOT_FOUND;
-    const isOlderThanCurrentSeen =
-      currentOldestSeenIndex !== IDX_NOT_FOUND &&
-      oldestMessageIndexInViewport !== undefined &&
-      oldestMessageIndexInViewport < currentOldestSeenIndex;
-
-    const shouldUpdateOldestSeen =
-      isOldestInViewportValid &&
-      (isCurrentOldestSeenIndexInvalid || isOlderThanCurrentSeen);
-
-    if (shouldUpdateOldestSeen) {
-      setOldestSeenId(oldestIdInViewport);
+  const clearPendingSeenRange = useCallback(() => {
+    if (pendingSeenTimerRef.current) {
+      clearTimeout(pendingSeenTimerRef.current);
+      pendingSeenTimerRef.current = undefined;
     }
-  }, [getViewportInfo, idsToIndexes, oldestSeenId]);
+    pendingSeenRangeRef.current = undefined;
+  }, []);
+
+  const commitSeenRange = useCallback(
+    ({ ids, indexes }: ViewportSeenRange<M>) => {
+      setSeenIdRanges(currentSeenIdRanges => {
+        const currentSeenRanges = resolveSeenIdRanges(
+          currentSeenIdRanges,
+          idsToIndexes,
+        );
+        if (isRangeInSeenRanges(currentSeenRanges, indexes)) {
+          return currentSeenIdRanges;
+        }
+
+        return [...currentSeenIdRanges, ids];
+      });
+    },
+    [idsToIndexes],
+  );
 
   const trackSeen = useCallback(() => {
-    trackNewestSeen();
-    trackOldestSeen();
-  }, [trackNewestSeen, trackOldestSeen]);
+    const viewportSeenRange = getViewportSeenRange();
+    if (viewportSeenRange === undefined) {
+      clearPendingSeenRange();
+      return;
+    }
 
-  useEffect(() => {
-    const { newestIdInViewport, oldestIdInViewport } = getViewportInfo();
-    if (newestSeenId === undefined && newestIdInViewport !== undefined) {
-      setNewestSeenId(newestIdInViewport);
+    if (seenDelayMs <= 0) {
+      clearPendingSeenRange();
+      commitSeenRange(viewportSeenRange);
+      return;
     }
-    if (oldestSeenId === undefined && oldestIdInViewport !== undefined) {
-      setOldestSeenId(oldestIdInViewport);
+
+    if (
+      pendingSeenRangeRef.current &&
+      isViewportSeenRangeEqual(pendingSeenRangeRef.current, viewportSeenRange)
+    ) {
+      return;
     }
-    trackSeen();
-  }, [getViewportInfo, newestSeenId, oldestSeenId, trackSeen]);
+
+    clearPendingSeenRange();
+    pendingSeenRangeRef.current = viewportSeenRange;
+    pendingSeenTimerRef.current = setTimeout(() => {
+      const pendingSeenRange = pendingSeenRangeRef.current;
+      const currentSeenRange = getViewportSeenRange();
+      pendingSeenTimerRef.current = undefined;
+
+      if (currentSeenRange === undefined) {
+        pendingSeenRangeRef.current = undefined;
+        return;
+      }
+
+      if (
+        pendingSeenRange &&
+        isViewportSeenRangeEqual(pendingSeenRange, currentSeenRange)
+      ) {
+        pendingSeenRangeRef.current = undefined;
+        commitSeenRange(currentSeenRange);
+        return;
+      }
+
+      pendingSeenRangeRef.current = undefined;
+      trackSeen();
+    }, seenDelayMs);
+  }, [
+    clearPendingSeenRange,
+    commitSeenRange,
+    getViewportSeenRange,
+    seenDelayMs,
+  ]);
 
   useEffect(() => trackSeen(), [messages, trackSeen]);
+
+  useEffect(() => clearPendingSeenRange, [clearPendingSeenRange]);
 
   return {
     newestSeenId,
     oldestSeenId,
-    newestSeenIndex:
-      newestSeenId === undefined ? undefined : idsToIndexes.get(newestSeenId),
-    oldestSeenIndex:
-      oldestSeenId === undefined ? undefined : idsToIndexes.get(oldestSeenId),
+    newestSeenIndex,
+    oldestSeenIndex,
+    seenRanges,
     trackSeen,
   };
 }
